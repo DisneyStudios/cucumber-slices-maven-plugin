@@ -1,0 +1,27 @@
+
+# Eclipse project 
+/.classpath
+/.settings
+/.project
+
+# IDEA project
+*.iml
+/.idea
+
+# binaries and swap files
+/bin
+*.swp
+
+# all target folders for maven multi-module project
+/**/target
+
+# all build folders
+/**/build
+
+# cucumber-specific files
+.cucumber
+rerun.txt
+
+# parallel related folders
+/**/parallel_features
+/**/parallel_runners
