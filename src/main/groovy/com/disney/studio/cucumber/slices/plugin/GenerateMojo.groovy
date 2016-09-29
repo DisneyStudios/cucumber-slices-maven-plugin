@@ -8,7 +8,7 @@ import org.apache.maven.plugins.annotations.LifecyclePhase
 import org.apache.maven.plugins.annotations.Mojo
 
 @Slf4j
-@Mojo(name = 'generate', defaultPhase = LifecyclePhase.GENERATE_TEST_RESOURCES)
+@Mojo(name = "generate", defaultPhase = LifecyclePhase.GENERATE_TEST_RESOURCES)
 class GenerateMojo extends AbstractMojo {
 
 
