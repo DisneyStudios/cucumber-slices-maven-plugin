@@ -16,19 +16,20 @@ class GenerateMojo extends AbstractMojo {
     @Parameter(property = 'cucumberTags')
     private List<String> cucumberTags
 
-    @Parameter(property = 'outputParallelRunnersDirectory', required = true)
-    private String outputParallelRunnersDirectory
+    @Parameter(property = 'parallelRunnersDirectory', required = true)
+    private String parallelRunnersDirectory
 
-    @Parameter(property = 'inputFeaturesDirectory', defaultValue = 'src/test/resources/features', required = true)
-    private String inputFeaturesDirectory
+    @Parameter(property = 'featuresDirectory', defaultValue = 'src/test/resources/features')
+    private String featuresDirectory
 
     public void execute() throws MojoExecutionException, MojoFailureException {
         log.info("EXECUTING the 'generate' goal of the Cucumber Slices Plugin . . .")
-        log.info("Cucumber Tags = ${cucumberTags}")
-        log.info("Output Directory for Parallel Runners = $outputParallelRunnersDirectory")
-        log.info("Cucumber Features Directory: $inputFeaturesDirectory")
+        log.info("Cucumber Tags: ${cucumberTags}")
+        log.info("Output Directory for Parallel Runners: $parallelRunnersDirectory")
+        log.info("Cucumber Features Directory: $featuresDirectory")
 
-        FeatureFileCollector featureFileCollector = new FeatureFileCollector(inputFeaturesDirectory)
+        FeatureFileCollector featureFileCollector = new FeatureFileCollector(featuresDirectory)
         List<String> featureFileNames = featureFileCollector.getFeatureFileNameCollection()
+        log.info("List of Feature File Names: $featureFileNames")
     }
 }
