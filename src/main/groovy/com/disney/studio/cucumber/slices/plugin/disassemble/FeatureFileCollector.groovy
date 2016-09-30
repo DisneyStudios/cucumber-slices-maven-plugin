@@ -8,10 +8,6 @@ class FeatureFileCollector {
     private String featuresDirPath
     private List<String> featureFileNames = []
 
-    FeatureFileCollector() {
-        this('src/test/resources/features')
-    }
-
     FeatureFileCollector(String featureDirPath) {
         this.featuresDirPath = featureDirPath
     }
