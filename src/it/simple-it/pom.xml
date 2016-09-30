@@ -27,7 +27,7 @@
               <goal>generate</goal>
             </goals>
             <configuration>
-              <outputParallelRunnersDirectory>src/test/groovy/parallel_runners</outputParallelRunnersDirectory>
+              <parallelRunnersDirectory>src/test/parallel_runners</parallelRunnersDirectory>
             </configuration>
           </execution>
         </executions>
