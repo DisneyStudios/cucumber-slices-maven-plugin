@@ -2,13 +2,11 @@ package com.disney.studio.cucumber.slices.plugin.assemble
 
 import groovy.util.logging.Slf4j
 
-import java.nio.file.Path
 import java.nio.file.Paths
 
 @Slf4j
 class CucumberRunWithWriter {
     private static final String CUKE_RUNNER_TEMPLATE_FILE = 'cuke_runner_template.txt'
-    private static final Path TEMPLATE_DIR = Paths.get('src/test/resources/templates')
     private static final String CUKE_RUNNER_TEMPLATE_EXAMPLE = """\
 import cucumber.api.CucumberOptions
 import cucumber.api.junit.Cucumber
@@ -27,21 +25,21 @@ class ParallelRunner<runner index> {
 """
     private String cukeRunnerTemplateCode
     private String parallelRunnersDirectory
+    private String templatesDirectory
     private LinkedHashMap<String, String> assembledCucumberRunnerFiles
 
-    CucumberRunWithWriter(String parallelRunnersDirectory) {
-        assert parallelRunnersDirectory, "The output parallel runners directory is undefined! Make sure to configure this value in your pom file"
+    CucumberRunWithWriter(String parallelRunnersDirectory, String templatesDirectory) {
         this.parallelRunnersDirectory = parallelRunnersDirectory
+        this.templatesDirectory = templatesDirectory
         this.cukeRunnerTemplateCode = readCukeRunnerTemplate()
         this.assembledCucumberRunnerFiles = new LinkedHashMap<>()
         createParallelRunnerDirectory()
     }
 
-    @SuppressWarnings("GrMethodMayBeStatic")
     private String readCukeRunnerTemplate() {
-        File templateDir = TEMPLATE_DIR.toFile()
+        File templateDir = Paths.get(templatesDirectory).toFile()
         if (!templateDir.exists()) {
-            throw new IllegalStateException("The templates resource directory [$TEMPLATE_DIR] does not exist!")
+            throw new IllegalStateException("The templates resource directory [$templatesDirectory] does not exist!")
         }
 
         File templateFile = new File(templateDir.absolutePath.trim() + '/' + CUKE_RUNNER_TEMPLATE_FILE)
@@ -53,7 +51,6 @@ class ParallelRunner<runner index> {
         return templateFile.text
     }
 
-    @SuppressWarnings("GrMethodMayBeStatic")
     private void createParallelRunnerDirectory() {
         File dir = new File("$parallelRunnersDirectory")
         if (dir.exists() || !dir.exists()) {
@@ -63,7 +60,6 @@ class ParallelRunner<runner index> {
         log.info("Successfully created the ${dir.absolutePath} directory.")
     }
 
-    @SuppressWarnings("GrMethodMayBeStatic")
     private String findAndReplaceCukeRunnerTokens(String fileName, int counter) {
         def newCode = (cukeRunnerTemplateCode =~ /<feature file>/).replaceFirst(fileName)
         newCode = (newCode =~ /<runner index>/).replaceAll(counter.toString())

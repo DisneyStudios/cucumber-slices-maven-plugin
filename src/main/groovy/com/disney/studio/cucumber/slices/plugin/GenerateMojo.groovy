@@ -36,7 +36,7 @@ class GenerateMojo extends AbstractMojo {
 
         // Initialize the assemble objects
         FeatureFileAssembler featureFileAssembler = new FeatureFileAssembler(cucumberTags)
-        CucumberRunWithWriter cucumberRunWithWriter = new CucumberRunWithWriter(parallelRunnersDirectory)
+        CucumberRunWithWriter cucumberRunWithWriter = new CucumberRunWithWriter(parallelRunnersDirectory, templatesDirectory)
 
         featureFileNames.each { name ->
             // format the contents of the supplied feature file as JSON
@@ -51,7 +51,7 @@ class GenerateMojo extends AbstractMojo {
         }
 
         // write out the Cucumber Runner files
-        log.info("Creating the Cucumber RunWith Files...")
+        log.info("Creating the Cucumber Runner files...")
         cucumberRunWithWriter.writeCucumberRunWithFiles()
     }
 }
