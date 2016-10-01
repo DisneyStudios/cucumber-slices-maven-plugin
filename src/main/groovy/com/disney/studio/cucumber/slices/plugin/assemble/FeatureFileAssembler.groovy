@@ -34,7 +34,7 @@ class FeatureFileAssembler {
         this.expectedTags = expectedTags
         this.jsonSlurper = new JsonSlurper()
         this.featureFileWriter = new FeatureFileWriter()
-        log.info("Supplied list of Scenario tag filters: $expectedTags")
+        log.info("Supplied list of tag filters: $expectedTags")
     }
 
     FeatureFileWriter getFeatureFileWriter() {
@@ -130,7 +130,7 @@ class FeatureFileAssembler {
                 }
             }
         } else {
-            log.warn('Skipping further processing of the supplied feature file because it does not contain any scenarios!')
+            log.warn("Skipping feature file [${parsedJson.name}] because it does not contain any scenarios!")
         }
     }
 

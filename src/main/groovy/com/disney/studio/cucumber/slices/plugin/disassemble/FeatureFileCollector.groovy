@@ -21,12 +21,14 @@ class FeatureFileCollector {
 
     private void collectFeatureFileNames() {
         File directory = new File(featuresDirPath)
-        log.info("Recursivley scanning the supplied Cucumber features directory [${directory.absolutePath}] . . .")
+        log.info("Recursivley scanning the supplied Cucumber features directory [${directory.absolutePath}]...")
 
         directory.eachFileRecurse(FileType.FILES) { file ->
             if (file.name =~ /.*\.feature/) {
                 featureFileNames.add(file.absolutePath)
             }
         }
+
+        log.info("Total number of feature files scanned: ${featureFileNames.size()}")
     }
 }

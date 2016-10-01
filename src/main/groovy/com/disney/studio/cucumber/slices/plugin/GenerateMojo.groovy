@@ -29,12 +29,6 @@ class GenerateMojo extends AbstractMojo {
     private String featuresDirectory
 
     public void execute() throws MojoExecutionException, MojoFailureException {
-        getLog().info("EXECUTING the 'generate' goal of the Cucumber Slices Plugin . . .")
-        getLog().info("Cucumber Tags: ${cucumberTags}")
-        getLog().info("Output Directory for Parallel Runners: $parallelRunnersDirectory")
-        log.info("Cucumber Features Directory: $featuresDirectory")
-        log.info("Cucumber Templates Directory: $templatesDirectory")
-
         // Initialize the disassemble objects
         FeatureFileCollector featureFileCollector = new FeatureFileCollector(featuresDirectory)
         FeatureFileParser featureFileParser = new FeatureFileParser()
@@ -57,7 +51,7 @@ class GenerateMojo extends AbstractMojo {
         }
 
         // write out the Cucumber Runner files
-        log.info("Creating the Cucumber RunWith Files . . .")
+        log.info("Creating the Cucumber RunWith Files...")
         cucumberRunWithWriter.writeCucumberRunWithFiles()
     }
 }

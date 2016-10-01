@@ -67,7 +67,7 @@
             </plugin>
             <!-- Attaching the Mojo to the Build Lifecycle -->
             <!-- AFTER running 'mvn clean install', you can also configure your plugin to attach specific goals to a -->
-            <!-- particular phase of the build lifecycle. Here is an example: -->
+             <!--particular phase of the build lifecycle. Here is an example:-->
             <!--<plugin>-->
                 <!--<groupId>com.disney.studio.cucumber.slices.plugin</groupId>-->
                 <!--<artifactId>cucumber-slices-maven-plugin</artifactId>-->
@@ -79,6 +79,9 @@
                             <!--<goal>generate</goal>-->
                         <!--</goals>-->
                         <!--<configuration>-->
+                            <!--<cucumberTags>-->
+                                <!--<param>@regression</param>-->
+                            <!--</cucumberTags>-->
                             <!--<templatesDirectory>src/test/resources/templates</templatesDirectory>-->
                             <!--<parallelRunnersDirectory>src/test/groovy/parallel_runners</parallelRunnersDirectory>-->
                         <!--</configuration>-->
