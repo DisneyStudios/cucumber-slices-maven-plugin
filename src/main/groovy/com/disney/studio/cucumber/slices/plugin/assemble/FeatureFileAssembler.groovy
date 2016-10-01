@@ -22,23 +22,15 @@ class FeatureFileAssembler {
     private FeatureFileWriter featureFileWriter
 
     /**
-     * Default constructor. Defaults to using the following Cucumber tags
-     * <ul>
-     *     <li>@smoke
-     *     <li>@regression
-     * </ul>
-     */
-    FeatureFileAssembler() {
-        this(['@smoke', '@regression'])
-    }
-
-    /**
      * Construct a FeatureFileAssembler using the specified <em>expectedTags</em>
      * @param expectedTags
      * The Cucumber tags that one would expect to filter on when creating the feature files
      */
     FeatureFileAssembler(List<String> expectedTags) {
-        assert expectedTags.every { it.contains('@') }, "One or more of the supplied Cucumber tags '$expectedTags' is not properly formatted. Missing the '@' character!!!"
+        assert expectedTags.size() > 0, "Invalid tag collection!! The supplied collection of Cucumber tags is empty. Make sure to define your list of tags within the POM file"
+        boolean isTagFormattedCorrectly = expectedTags.every { it.contains('@') }
+        assert isTagFormattedCorrectly, "Missing '@' character!!! One or more of the supplied Cucumber tags '$expectedTags' is not properly formatted"
+
         this.expectedTags = expectedTags
         this.jsonSlurper = new JsonSlurper()
         this.featureFileWriter = new FeatureFileWriter()
@@ -271,7 +263,7 @@ class FeatureFileAssembler {
      * The JSON element that contains information associated with the Scenario
      */
     private void processElement(Map element) {
-        if (isBackgroundDefined(element)) info('The supplied feature file contains a Cucumber Background section.')
+        if (isBackgroundDefined(element)) log.info('The supplied feature file contains a Cucumber Background section.')
         // store feature file name
         if (isElementIdDefined(element)) {
             // the name of the feature file on disk

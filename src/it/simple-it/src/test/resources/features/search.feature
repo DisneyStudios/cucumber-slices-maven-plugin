@@ -24,3 +24,9 @@ Feature: Searching Google
     And click the Submit button
     Then the page title returned is "Avengers Age of Ultron - Google Search"
 
+  @not-regression
+  Scenario: The search for rogue one
+    Given I am on Google home page
+    When I enter the keyword of "Rogue One"
+    And click the Submit button
+    Then the page title returned is "Rogue One - Google Search"

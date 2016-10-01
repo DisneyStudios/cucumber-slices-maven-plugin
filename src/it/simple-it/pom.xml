@@ -27,7 +27,11 @@
               <goal>generate</goal>
             </goals>
             <configuration>
-              <parallelRunnersDirectory>src/test/parallel_runners</parallelRunnersDirectory>
+                <cucumberTags>
+                    <param>@regression</param>
+                </cucumberTags>
+                <templatesDirectory>src/test/resources/templates</templatesDirectory>
+              <parallelRunnersDirectory>src/test/groovy/parallel_runners</parallelRunnersDirectory>
             </configuration>
           </execution>
         </executions>

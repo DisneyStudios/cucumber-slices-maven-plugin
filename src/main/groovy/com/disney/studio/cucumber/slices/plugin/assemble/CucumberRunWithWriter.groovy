@@ -26,17 +26,12 @@ class ParallelRunner<runner index> {
 }
 """
     private String cukeRunnerTemplateCode
-    private String outputParallelRunnersDir
+    private String parallelRunnersDirectory
     private LinkedHashMap<String, String> assembledCucumberRunnerFiles
 
-
-    CucumberRunWithWriter() {
-        this('src/test/groovy/parallel_runners')
-    }
-
-    CucumberRunWithWriter(String outputParallelRunnersDir) {
-        assert outputParallelRunnersDir, "The output parallel runners directory is undefined! Make sure to configure this value in your pom file"
-        this.outputParallelRunnersDir = outputParallelRunnersDir
+    CucumberRunWithWriter(String parallelRunnersDirectory) {
+        assert parallelRunnersDirectory, "The output parallel runners directory is undefined! Make sure to configure this value in your pom file"
+        this.parallelRunnersDirectory = parallelRunnersDirectory
         this.cukeRunnerTemplateCode = readCukeRunnerTemplate()
         this.assembledCucumberRunnerFiles = new LinkedHashMap<>()
         createParallelRunnerDirectory()
@@ -60,7 +55,7 @@ class ParallelRunner<runner index> {
 
     @SuppressWarnings("GrMethodMayBeStatic")
     private void createParallelRunnerDirectory() {
-        File dir = new File("$outputParallelRunnersDir")
+        File dir = new File("$parallelRunnersDirectory")
         if (dir.exists() || !dir.exists()) {
             dir.deleteDir()
             dir.mkdirs()
@@ -79,7 +74,7 @@ class ParallelRunner<runner index> {
         int runCounter = 0
 
         for (featureFile in featureFileAssembler.featureFileWriter.featureFiles) {
-            def cukeRunnerFileName = "$outputParallelRunnersDir/ParallelRunner${runCounter}.groovy"
+            def cukeRunnerFileName = "$parallelRunnersDirectory/ParallelRunner${runCounter}.groovy"
             def featureFileName = Paths.get(featureFile.toString()).fileName.toString()
             assembledCucumberRunnerFiles[cukeRunnerFileName] = featureFileName
             runCounter++
