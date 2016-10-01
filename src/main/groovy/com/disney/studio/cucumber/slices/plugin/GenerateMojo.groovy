@@ -22,11 +22,11 @@ class GenerateMojo extends AbstractMojo {
     @Parameter(property = 'templatesDirectory', required = true)
     private String templatesDirectory
 
+    @Parameter(defaultValue = 'src/test/resources/features', property = 'featuresDirectory', required = true)
+    private String featuresDirectory
+
     @Parameter(property = 'cucumberTags')
     private List<String> cucumberTags
-
-    @Parameter(defaultValue = 'src/test/resources/features', property = 'featuresDirectory')
-    private String featuresDirectory
 
     public void execute() throws MojoExecutionException, MojoFailureException {
         // Initialize the disassemble objects

@@ -38,6 +38,7 @@ class ParallelRunner<runner index> {
 
     private String readCukeRunnerTemplate() {
         File templateDir = Paths.get(templatesDirectory).toFile()
+
         if (!templateDir.exists()) {
             throw new IllegalStateException("The templates resource directory [$templatesDirectory] does not exist!")
         }
