@@ -29,3 +29,9 @@ Simply add the following to the `plugins` section of your POM file
             </plugin>
         </plugins>
 ```
+
+Cucumber Slices supports the following `<configuration>` settings
+
+setting | description | default valued | property | required
+--------|-------------|----------------|----------|----------
+parallelRunnersDirectory | A directory containing the Cucumber runner class files. The directory MUST exist on the classpath | | parallelRunnersDirectory | YES |
