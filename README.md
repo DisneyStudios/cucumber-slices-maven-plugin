@@ -72,7 +72,7 @@ After installing the plugin within your POM file,
 
 DO NOT remove or change lines associated with the tags labeled `<feature file>` or `<runner index>`.  These will be used internally at runtime.
 
-### Groovy Example
+### Groovy Example of `cuke_runner_template.txt`
 
 ```groovy
 import cucumber.api.CucumberOptions
@@ -91,7 +91,7 @@ class ParallelRunner<runner index> {
 }
 ```
 
-### Java Example
+### Java Example of `cuke_runner_template.txt`
 
 ```java
 import cucumber.api.CucumberOptions;
