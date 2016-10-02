@@ -64,7 +64,7 @@ import org.junit.runner.RunWith
 @CucumberOptions (
         features = ["classpath:parallel_features/<feature file>"]
         , monochrome = true
-        , format = ["pretty", "json:target/cucumber-report/TestGroup<runner index>/cucumber.json", "rerun:rerun.txt", "junit:target/cucumber-report/TestGroup<runner index>/cucumber.xml"]
+        , format = ["pretty", "json:target/cucumber-report/TestGroup<runner index>/cucumber.json", "junit:target/cucumber-report/TestGroup<runner index>/cucumber.xml"]
         , glue = ["src/test/groovy/path/to/your/steps"]
         , tags = ["~@manual"]
 )
@@ -75,6 +75,20 @@ class ParallelRunner<runner index> {
 ### Java Example
 
 ```java
+import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
+import org.junit.runner.RunWith;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+    features={"classpath:parallel_features/<feature file>"}
+    , monochrome = true
+    , format = {"pretty", "json:target/cucumber-report/TestGroup<runner index>/cucumber.json", "junit:target/cucumber-report/TestGroup<runner index>/cucumber.xml"}
+    , glue = {"com.mycompany.cucumber.stepdefinitions"}
+    , tags = {"~@manual"}
+    )
+public class ParallelRunner<runner index> {
+}
 ```
 
 
