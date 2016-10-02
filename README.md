@@ -3,7 +3,7 @@ The Cucumber Slices Plugin is designed to parse Cucumber feature files with 1 or
 
 Although not required, using the Cucumber Slices Plugin _after_ the `test-compile` lifecycle phase is NOT RECOMMENDED.  The purpose behind the plugin is to generate (at runtime), Cucumber Feature files and Cucumber Runners, by reading from an existing set of feature files.  In order for the plugin to work properly, it is RECOMMENDED that the execution phase is set to `generate-test-resources`, which is triggered before the `test-compile` phase.
 
-## Usage
+## Installation
 
 Simply add the following to the `plugins` section of your POM file
 
@@ -32,6 +32,8 @@ Simply add the following to the `plugins` section of your POM file
         </plugins>
 ```
 
+## Configuration Settings
+
 Cucumber Slices supports the following `<configuration>` settings
 
 setting | description | default value | property | required
@@ -41,7 +43,38 @@ templatesDirectory | A directory whose contents contain references to templates 
 featuresDirectory | A directory containing the Cucumber feature files. The directory **MUST** be in the root of the runtime classpath | src/test/resources/features | featuresDirectory | YES |
 cucumberTags | A list of tags used by the plugin to filter which scenarios shall be read | | cucumberTags | NO |
 
-## Usage Examples
+## Setup
 
-### Example 1
+After installing the plugin within your POM file,
+
+1. Download a copy of the `cuke_runner_template.txt` from this repositories **example_template** directory.
+2. Place a copy of the downloaded file with the `templatesDirectory` you've defined in your POM file.  It should be noted, that the example `cuke_runner_template.txt` file is based on Groovy code.
+3. Alter the `glue` statement to point to where your Cucumber step files are located
+
+DO NOT remove or change the tags labeled `<feature file>` or `<runner index>`.  These will be used internally at runtime.
+
+### Groovy Example
+
+```groovy
+import cucumber.api.CucumberOptions
+import cucumber.api.junit.Cucumber
+import org.junit.runner.RunWith
+
+@RunWith(Cucumber.class)
+@CucumberOptions (
+        features = ["classpath:parallel_features/<feature file>"]
+        , monochrome = true
+        , format = ["pretty", "json:target/cucumber-report/TestGroup<runner index>/cucumber.json", "rerun:rerun.txt", "junit:target/cucumber-report/TestGroup<runner index>/cucumber.xml"]
+        , glue = ["src/test/groovy/path/to/your/steps"]
+        , tags = ["~@manual"]
+)
+class ParallelRunner<runner index> {
+}
+```
+
+### Java Example
+
+```java
+```
+
 
