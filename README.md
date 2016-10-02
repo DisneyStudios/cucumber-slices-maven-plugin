@@ -56,6 +56,12 @@ Cucumber Slices supports the following `<configuration>` settings
 * _property_: cucumberTags
 * _required_: NO
 
+The property values listed in each of the configuration settings can be used in place of the POM file settings.  For instance, you may execute the following Maven command
+
+```maven
+mvn generate-test-resources -DparallelRunnersDirectory='src/test/groovy/parallel_runners' -DtemplatesDirectory='src/test/resources/templates'
+```
+
 ## Setup
 
 After installing the plugin within your POM file,
