@@ -36,12 +36,25 @@ Simply add the following to the `plugins` section of your POM file
 
 Cucumber Slices supports the following `<configuration>` settings
 
-setting | description | default value | property | required
---------|-------------|----------------|----------|----------
-parallelRunnersDirectory | A directory that shall contain the Cucumber runner class files. The files contained within this directory are created at runtime. The directory **MUST** exist somewhere on the _test_ classpath because the files within the directory need to be compiled during the `test-compile` phase. | | parallelRunnersDirectory | YES |
-templatesDirectory | A directory whose contents contain references to templates used within the plugin. This directory **MUST** contain the file labeled _cuke_runner_template.txt_. An example of the template file (Groovy-specific) is contained in the **example_template** directory within the root of this repository. | | templatesDirectory | YES |
-featuresDirectory | A directory containing the Cucumber feature files. The directory **MUST** be in the root of the runtime classpath | src/test/resources/features | featuresDirectory | YES |
-cucumberTags | A list of tags used by the plugin to filter which scenarios shall be read | | cucumberTags | NO |
+**parallelRunnersDirectory**: A directory that shall contain the Cucumber runner class files. The files contained within this directory are created at runtime. The directory **MUST** exist somewhere on the _test_ classpath because the files within the directory need to be compiled during the `test-compile` phase.
+* _default value_: NONE
+* _property_: parallelRunnersDirectory
+* _required_: YES
+
+**templatesDirectory**: A directory whose contents contain references to templates used within the plugin. This directory MUST contain the file labeled cuke_runner_template.txt. An example of the template file (Groovy-specific) is contained in the example_template directory within the root of this repository.
+* _default value_: NONE
+* _property_: templatesDirectory
+* _required_: YES
+
+**featuresDirectory**: A directory containing the Cucumber feature files. The directory MUST be in the root of the runtime classpath
+* _default value_: src/test/resources/features
+* _property_: featuresDirectory
+* _required_: YES
+
+**cucumberTags**: A list of tags used by the plugin to filter which scenarios shall be read
+* _default value_: NONE
+* _property_: cucumberTags
+* _required_: NO
 
 ## Setup
 
