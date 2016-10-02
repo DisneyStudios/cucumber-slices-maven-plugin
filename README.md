@@ -84,7 +84,7 @@ import org.junit.runner.RunWith;
     features={"classpath:parallel_features/<feature file>"}
     , monochrome = true
     , format = {"pretty", "json:target/cucumber-report/TestGroup<runner index>/cucumber.json", "junit:target/cucumber-report/TestGroup<runner index>/cucumber.xml"}
-    , glue = {"com.mycompany.cucumber.stepdefinitions"}
+    , glue = {"com.mycompany.cucumber.stepdefinitions"} // package name where the step definition classes are kept
     , tags = {"~@manual"}
     )
 public class ParallelRunner<runner index> {
