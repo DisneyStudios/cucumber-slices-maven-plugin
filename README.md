@@ -68,7 +68,7 @@ After installing the plugin within your POM file,
 
 1. Download a copy of the `cuke_runner_template.txt` from this repositories **example_template** directory.
 2. Place a copy of the downloaded file within the `templatesDirectory` you've defined in your POM file.  It should be noted, that the example `cuke_runner_template.txt` file is based on Groovy code.
-3. Alter the `glue` statement to point to where your Cucumber step files are located
+3. Open the `cuke_runner_template.txt` file you copied to the templates directory in Step 2, and change the `glue` statement to point to where your Cucumber step files are located
 
 DO NOT remove or change lines associated with the tags labeled `<feature file>` or `<runner index>`.  These will be used internally at runtime.
 
