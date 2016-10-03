@@ -135,13 +135,16 @@ To execute the Cucumber scenarios in parallel, use of either the Maven Surefire 
                     <goals>
                         <goal>generate</goal>
                     </goals>
-                    <configuration>  <!-- 1 -->
+
+                    <!-- 1 -->
+                    <configuration>
                         <cucumberTags>
                             <param>@regression</param>
                         </cucumberTags>
                         <templatesDirectory>src/test/resources/templates</templatesDirectory>
                         <parallelRunnersDirectory>src/test/groovy/parallel_runners</parallelRunnersDirectory>
                     </configuration>
+
                 </execution>
             </executions>
             </plugin>
@@ -155,7 +158,9 @@ To execute the Cucumber scenarios in parallel, use of either the Maven Surefire 
                                 <goal>integration-test</goal>
                                 <goal>verify</goal>
                             </goals>
-                            <configuration>  <!-- 2 -->
+
+                            <!-- 2 -->
+                            <configuration>
                                 <testFailureIgnore>true</testFailureIgnore>
                                 <skipITs>false</skipITs>
                                 <forkCount>3</forkCount>
@@ -170,6 +175,7 @@ To execute the Cucumber scenarios in parallel, use of either the Maven Surefire 
                                     <include>**/ParallelRunner*.class</include>
                                 </includes>
                             </configuration>
+                            
                         </execution>
                     </executions>
             </plugin>
