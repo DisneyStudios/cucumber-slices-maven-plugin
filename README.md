@@ -196,7 +196,7 @@ See Failsafe's documentation, [Fork Options and Parallel Test Execution](https:/
 
 ## Test Run Output & Reports
 
-The output of each test run is contained within the project's `target` directory.  This includes all of the Failsafe output as well as the output from Cucumber (defined in the Cucumber Slices template file).
+The output of each test run is contained within the project's `target` directory.  This includes all of the Failsafe output as well as the output from Cucumber.
 
 For instance, in the template file example contained in the [Setup](#setup) section above, the `format` parameter is  `["pretty", "json:target/cucumber-report/TestGroup<runner index>/cucumber.json", "junit:target/cucumber-report/TestGroup<runner index>/cucumber.xml"]`. The Cucumber JSON files and the JUnit files are written to each of the TestGroup folders at runtime. The image shown below captures an example test run's output
 
