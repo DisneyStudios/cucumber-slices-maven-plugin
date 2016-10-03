@@ -1,5 +1,5 @@
 # cucumber-slices-maven-plugin
-The Cucumber Slices Plugin is designed to parse Cucumber feature files with 1 or more scenarios into many feature files, each with 1 scenario per feature file. The plugin can be used in combination with either the [Maven Surefire Plugin](http://maven.apache.org/surefire/maven-surefire-plugin/) or the [Maven Failsafe Plugin](http://maven.apache.org/surefire/maven-failsafe-plugin/) to run each of the generated feature files in parallel. Further information on how to configure these plugins to run Cucumber feature files in parallel is discussed in the [Running In Parallel](#running-in-parallel) section.
+The Cucumber Slices Plugin is designed to parse Cucumber feature files with 1 or more scenarios into many feature files, each with 1 scenario per feature file. The plugin can be used in combination with either the [Maven Surefire Plugin](http://maven.apache.org/surefire/maven-surefire-plugin/) or the [Maven Failsafe Plugin](http://maven.apache.org/surefire/maven-failsafe-plugin/) to run each of the generated feature files in parallel. Further information on how to configure these plugins to run Cucumber feature files in parallel is discussed in the [Running Scenarios In Parallel](#running-scenarios-in-parallel) section.
 
 Although not required, using the Cucumber Slices Plugin _after_ the `test-compile` lifecycle phase is NOT RECOMMENDED.  The purpose behind the plugin is to generate (at runtime), Cucumber Feature files and Cucumber Runners, by reading from an existing set of feature files.  In order for the plugin to work properly, it is RECOMMENDED that the execution phase is set to `generate-test-resources`, which is triggered before the `test-compile` phase.
 
@@ -110,4 +110,80 @@ public class ParallelRunner<runner index> {
 }
 ```
 
-## Running In Parallel
+The following is a breakdown of the tags noted in the template
+
+**&lt;feature file&gt;**: this tag represents the feature file name that shall be created at runtime.  Example: `the-search-for-cheese-072410-64.feature`. The resulting feature file name is a combination of the feature's name and the scenario's name, along with a timestamp.
+
+**&lt;runner index&gt;**: this tag represents the value of a counter that is used to designate a unique Cucumber Runner class. Example: `ParallelRunner0`, `ParallelRunner1`, etc.  There should be 1 ParallelRunner class generated for each feature file created at runtime.
+
+## Running Scenarios In Parallel
+
+To execute the Cucumber scenarios in parallel, use of either the Maven Surefire or Maven Failsafe Plugin is required. Configuration is handled within the POM file. For the purposes of the example shown below, we are going to use Maven's Failsafe Plugin contained within a Maven profile -- the same settings should apply to the Surefire Plugin.
+
+```xml
+<profiles>
+    <profile>
+        <id>parallel</id>
+        <build>
+        <plugin>
+            <groupId>com.disney.studio.cucumber.slices.plugin</groupId>
+            <artifactId>cucumber-slices-maven-plugin</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <executions>
+                <execution>
+                    <phase>generate-test-resources</phase>
+                    <goals>
+                        <goal>generate</goal>
+                    </goals>
+                    <configuration>  <!-- 1 -->
+                        <cucumberTags>
+                            <param>@regression</param>
+                        </cucumberTags>
+                        <templatesDirectory>src/test/resources/templates</templatesDirectory>
+                        <parallelRunnersDirectory>src/test/groovy/parallel_runners</parallelRunnersDirectory>
+                    </configuration>
+                </execution>
+            </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.19.1</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                            <configuration>  <!-- 2 -->
+                                <testFailureIgnore>true</testFailureIgnore>
+                                <skipITs>false</skipITs>
+                                <forkCount>3</forkCount>
+                                <reuseForks>false</reuseForks>
+                                <argLine>-Duser.language=en</argLine>
+                                <argLine>-Xmx512m</argLine>
+                                <argLine>-Xms512m</argLine>
+                                <argLine>-XX:MaxPermSize=512m</argLine>
+                                <argLine>-Dfile.encoding=UTF-8</argLine>
+                                <argLine>-Dcucumber.options="--tags @regression"</argLine>
+                                <includes>
+                                    <include>**/ParallelRunner*.class</include>
+                                </includes>
+                            </configuration>
+                        </execution>
+                    </executions>
+            </plugin>
+        </build>
+    </profile>
+</profiles>
+```
+
+Here is a breakdown of each of the plugins `<configuration>` sections:
+
+1. As already noted, the Cucumber Slices Plugin supports configuration parameters such as `<cucumberTags>`, `<templatesDirectory>` and `<parallelRunnersDirectory>` -- see the [Configuration Setting](#configuration-settings) section for more details
+2. The Failsafe Plugin supports a number of configuration parameters.  The settings to keep in mind are the following
+    1. `<forkCount>`: the number of scenarios to run in parallel
+    2. `<argLine>-Dcucumber.options="--tags @regression"</argLine>`: the Cucumber Options to pass off to Maven's plugin at runtime.  The `--tags` section MUST match the tags supplied to the Cucumber Slices Plugin.
+    3. `<includes>`: this section informs Maven's Failsafe Plugin that we would like to include those classes that match the pattern defined. In our case, the pattern in the example, `**/ParallelRunner*.class`, would match the generated Cucumber Runner classes (`ParallelRunner0`, `ParallelRunner1`, `ParallelRunnerN`), which are generated by the Cucumber Slices Plugin during the `generate-test-resources` lifecycle phase.
+
+See Failsafe's documentation, [Fork Options and Parallel Test Execution](https://maven.apache.org/components/surefire/maven-surefire-plugin/examples/fork-options-and-parallel-execution.html), for further details about parallel testing.
