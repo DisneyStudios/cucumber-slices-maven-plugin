@@ -4,6 +4,7 @@ The Cucumber Slices Plugin is designed to parse Cucumber feature files with 1 or
 The plugin can be used in combination with either the [Maven Surefire Plugin](http://maven.apache.org/surefire/maven-surefire-plugin/) or the [Maven Failsafe Plugin](http://maven.apache.org/surefire/maven-failsafe-plugin/) to run each of the generated feature files in parallel. Further information on how to configure these plugins to run Cucumber feature files in parallel is discussed in the [Running Scenarios In Parallel](#running-scenarios-in-parallel) section.
 
 The process of parsing and reassembling the feature files is outlined below:
+
 1. At runtime, during Maven's **generate-test-resources** phase, the **generate** goal is executed
 2. During execution,
     1. Read in all of the Cucumber feature files
