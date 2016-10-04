@@ -26,7 +26,7 @@ class FeatureFileCollector {
         if (!directory.exists()) {
             throw new IllegalArgumentException("The supplied features directory [${directory.absolutePath}] does not exist!!")
         }
-        log.info("Recursivley scanning the supplied Cucumber features directory [${directory.absolutePath}]...")
+        log.info("Recursively scanning the supplied Cucumber features directory [${directory.absolutePath}]...")
 
         directory.eachFileRecurse(FileType.FILES) { file ->
             if (file.name =~ /.*\.feature/) {
