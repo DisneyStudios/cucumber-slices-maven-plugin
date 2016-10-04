@@ -216,8 +216,10 @@ See Failsafe's documentation, [Fork Options and Parallel Test Execution](https:/
 
 The output of each test run is contained within the project's `target` directory.  This includes all of the Failsafe output as well as the output from Cucumber.
 
-For instance, in the template file example contained in the [Setup](#setup) section above, the `format` parameter is  `["pretty", "json:target/cucumber-report/TestGroup<runner index>/cucumber.json", "junit:target/cucumber-report/TestGroup<runner index>/cucumber.xml"]`. The Cucumber JSON files and the JUnit files are written to each of the TestGroup folders at runtime. The image shown below captures an example test run's output
+To demonstrate what the output looks like, let's assume we've used the Groovy template file contained in the [Setup](#setup) section above.  Within this template, the `format` parameter is  `["pretty", "json:target/cucumber-report/TestGroup<runner index>/cucumber.json", "junit:target/cucumber-report/TestGroup<runner index>/cucumber.xml"]`. The Cucumber JSON files and the JUnit files are written to each of the TestGroup folders at runtime. The image below captures the test run's output
 
 ![Sample Outpu](./images/cucumber-report-directory-structure.png)
 
 As shown, a `TestGroup` directory is created for each of the parallel test runs.  Contained within `TestGroup` directory is the `cucumber.json` and `cucumber.xml` files.
+
+IMPORTANT: The Cucumber Slices Plugin is not designed to aggregate the test output into a single report. There are other plugins that can assist in this (e.g., [Masterthougt's Cucumber Reporting Plugin](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22net.masterthought%22%20AND%20a%3A%22maven-cucumber-reporting%22))
