@@ -1,7 +1,25 @@
 # cucumber-slices-maven-plugin
-The Cucumber Slices Plugin is designed to parse Cucumber feature files with 1 or more scenarios into many feature files, each with 1 scenario per feature file. The plugin can be used in combination with either the [Maven Surefire Plugin](http://maven.apache.org/surefire/maven-surefire-plugin/) or the [Maven Failsafe Plugin](http://maven.apache.org/surefire/maven-failsafe-plugin/) to run each of the generated feature files in parallel. Further information on how to configure these plugins to run Cucumber feature files in parallel is discussed in the [Running Scenarios In Parallel](#running-scenarios-in-parallel) section.
+The Cucumber Slices Plugin is designed to parse Cucumber feature files with 1 or more scenarios into many feature files, each with 1 scenario per feature file.  Each parsed feature file is associated with a Cucumber runner file that is generated at runtime. 
 
-Although not required, using the Cucumber Slices Plugin _after_ the `test-compile` lifecycle phase is NOT RECOMMENDED.  The purpose behind the plugin is to generate (at runtime), Cucumber Feature files and Cucumber Runners, by reading from an existing set of feature files.  In order for the plugin to work properly, it is RECOMMENDED that the execution phase is set to `generate-test-resources`, which is triggered before the `test-compile` phase.
+The plugin can be used in combination with either the [Maven Surefire Plugin](http://maven.apache.org/surefire/maven-surefire-plugin/) or the [Maven Failsafe Plugin](http://maven.apache.org/surefire/maven-failsafe-plugin/) to run each of the generated feature files in parallel. Further information on how to configure these plugins to run Cucumber feature files in parallel is discussed in the [Running Scenarios In Parallel](#running-scenarios-in-parallel) section.
+
+The process of parsing and reassembling the feature files is outlined below:
+1. At runtime, during Maven's **generate-test-resources** phase, the **generate** goal is executed
+2. During execution,
+    1. Read in all of the Cucumber feature files
+    2. Parse the plain text files into JSON
+    3. Extract from the JSON data structure the following elements
+        1. **Feature** statement
+        2. **Background** statement
+        3. **Scenario** statement or **Scenario Outline** statement
+        4. **Given**, **When**, and **Then** statements
+        5. **Examples** statements
+    4. Reassemble these statements and write the results out to a single feature file using Gherkin syntax 
+    5. Write a single Cucumber runner that contains a reference to the feature file created in Step iv
+3. Using Maven's Failsafe Plugin, fork JVMs   
+4. Each fork looks for a Cucumber Runner class and then executes the single scenario          
+
+Although not required, using the Cucumber Slices Plugin _after_ the `test-compile` lifecycle phase is NOT RECOMMENDED.  The purpose behind the plugin is to generate (at runtime), Cucumber Feature files and Cucumber Runners, by reading from an existing set of feature files.  In order for the plugin to work properly, it is REQUIRED that the execution phase takes place before the `test-compile` phase -- use either the `generate-test-resources` or the `generate-test-sources` phase.
 
 ## Installation
 
