@@ -26,5 +26,5 @@ rerun.txt
 /**/parallel_features
 /**/parallel_runners
 
-# ignore all feature files
-/**/features
+# ignore all feature files in test directory
+/src/test/resources/features
