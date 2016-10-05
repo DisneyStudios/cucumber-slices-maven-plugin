@@ -25,3 +25,6 @@ rerun.txt
 # parallel related folders
 /**/parallel_features
 /**/parallel_runners
+
+# ignore all feature files
+/**/features
