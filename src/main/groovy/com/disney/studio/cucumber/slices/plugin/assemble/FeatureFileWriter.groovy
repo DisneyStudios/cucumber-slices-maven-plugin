@@ -7,7 +7,7 @@ class FeatureFileWriter {
 
     void writeFeature(List dataStructureCollection) {
         if (!file) {
-            throw new IllegalArgumentException("Undefined path to feature file!!")
+            throw new IllegalArgumentException("Cannot create feature file! The filehandle is undefined.")
         }
         for (dataStructure in dataStructureCollection) {
             appendDataToFile(dataStructure)
