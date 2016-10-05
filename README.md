@@ -3,25 +3,6 @@ The Cucumber Slices Plugin is designed to parse Cucumber feature files with 1 or
 
 The plugin can be used in combination with either the [Maven Surefire Plugin](http://maven.apache.org/surefire/maven-surefire-plugin/) or the [Maven Failsafe Plugin](http://maven.apache.org/surefire/maven-failsafe-plugin/) to run each of the generated feature files in parallel. Further information on how to configure these plugins to run Cucumber feature files in parallel is discussed in the [Running Scenarios In Parallel](#running-scenarios-in-parallel) section.
 
-The process of parsing and reassembling the feature files is outlined below:
-
-1. At runtime, during Maven's **generate-test-resources** phase, the **generate** goal is executed
-2. During execution,
-    1. Read in all of the Cucumber feature files
-    2. Parse the plain text files into JSON
-    3. Extract from the JSON data structure the following elements
-        1. **Feature** statement
-        2. **Background** statement
-        3. **Scenario** statement or **Scenario Outline** statement
-        4. **Given**, **When**, and **Then** statements
-        5. **Examples** statements
-    4. Reassemble these statements and write the results out to a single feature file using Gherkin syntax 
-    5. Write a single Cucumber runner that contains a reference to the feature file created in Step iv
-3. Using Maven's Failsafe Plugin, fork JVMs   
-4. Each fork looks for a Cucumber Runner class and then executes the single scenario          
-
-Although not required, using the Cucumber Slices Plugin _after_ the `test-compile` lifecycle phase is NOT RECOMMENDED.  The purpose behind the plugin is to generate (at runtime), Cucumber Feature files and Cucumber Runners, by reading from an existing set of feature files.  In order for the plugin to work properly, it is REQUIRED that the execution phase takes place before the `test-compile` phase -- use either the `generate-test-resources` or the `generate-test-sources` phase.
-
 ## Installation
 
 Simply add the following to the `plugins` section of your POM file
@@ -135,6 +116,27 @@ The following is a breakdown of the tags noted in the template
 
 **&lt;runner index&gt;**: this tag represents the value of a counter that is used to designate a unique Cucumber Runner class. Example: `ParallelRunner0`, `ParallelRunner1`, etc.  There should be 1 ParallelRunner class generated for each feature file created at runtime.
 
+## Disassemble & Reassemble Process Details
+
+The process of parsing and reassembling the feature files is outlined below:
+
+1. At runtime, during Maven's **generate-test-resources** phase, the **generate** goal is executed
+2. During execution,
+    1. Read in all of the Cucumber feature files
+    2. Parse the plain text files into JSON
+    3. Extract from the JSON data structure the following elements
+        1. **Feature** statement
+        2. **Background** statement
+        3. **Scenario** statement or **Scenario Outline** statement
+        4. **Given**, **When**, and **Then** statements
+        5. **Examples** statements
+    4. Reassemble these statements and write the results out to a single feature file using Gherkin syntax 
+    5. Write a single Cucumber runner that contains a reference to the feature file created in Step iv
+3. Using Maven's Failsafe Plugin, fork JVMs   
+4. Each fork looks for a Cucumber Runner class and then executes the single scenario          
+
+Although not required, using the Cucumber Slices Plugin _after_ the `test-compile` lifecycle phase is NOT RECOMMENDED.  The purpose behind the plugin is to generate (at runtime), Cucumber Feature files and Cucumber Runners, by reading from an existing set of feature files.  In order for the plugin to work properly, it is REQUIRED that the execution phase takes place before the `test-compile` phase -- use either the `generate-test-resources` or the `generate-test-sources` phase.
+
 ## Running Scenarios In Parallel
 
 To execute the Cucumber scenarios in parallel, use of either the Maven Surefire or Maven Failsafe Plugin is required. Configuration is handled within the POM file. For the purposes of the example shown below, we are going to use Maven's Failsafe Plugin contained within a Maven profile -- the same settings should apply to the Surefire Plugin.
@@ -223,4 +225,4 @@ To demonstrate what the output looks like, let's assume we've used the Groovy te
 
 As shown, a `TestGroup` directory is created for each of the parallel test runs.  Contained within `TestGroup` directory is the `cucumber.json` and `cucumber.xml` files.
 
-IMPORTANT: The Cucumber Slices Plugin is not designed to combine the test output into a single report. There are other plugins that can assist in this (e.g., [Masterthougt's Cucumber Reporting Plugin](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22net.masterthought%22%20AND%20a%3A%22maven-cucumber-reporting%22))
+IMPORTANT: The Cucumber Slices Plugin is not designed to aggregate the test output into a single report. There are other plugins that can assist in this (e.g., [Masterthought's Cucumber Reporting Plugin](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22net.masterthought%22%20AND%20a%3A%22maven-cucumber-reporting%22))

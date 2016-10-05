@@ -6,6 +6,9 @@ class FeatureFileWriter {
     List<File> featureFiles = []
 
     void writeFeature(List dataStructureCollection) {
+        if (!file) {
+            throw new IllegalArgumentException("Cannot create feature file! The filehandle is undefined.")
+        }
         for (dataStructure in dataStructureCollection) {
             appendDataToFile(dataStructure)
             file.withWriterAppend { writer -> writer.write(EOL)}
