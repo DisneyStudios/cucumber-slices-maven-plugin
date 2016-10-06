@@ -1,0 +1,1 @@
+A placeholder text file that should be ignored, since it is not a feature file
