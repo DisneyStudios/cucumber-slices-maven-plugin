@@ -79,19 +79,24 @@ class ParallelRunner<runner index> {
     }
 
     void writeCucumberRunWithFiles() {
-        assert assembledCucumberRunnerFiles.size() > 0, 'Invalid collection!! The collection of assembled Cucumber runner files is empty'
-        int runCounter = 0
-        for (runner in assembledCucumberRunnerFiles) {
-            // create file using the key, which represents the cuke runner filename
-            File cukeRunnerFile = new File(runner.key)
-            cukeRunnerFile.withWriter { writer ->
-                // replace cuke runner tokens supplying the value of the map, which represents the feature file name
-                writer.write(findAndReplaceCukeRunnerTokens(runner.value, runCounter))
+        if (assembledCucumberRunnerFiles.size() == 0) {
+            log.warn("Missing generated Cucumber Runner files!! Skipping creation of Cucumber Runner files in the $parallelRunnersDirectory directory.")
+        } else {
+            assert assembledCucumberRunnerFiles.size() > 0, 'Invalid collection!! The collection of assembled Cucumber Runner files is empty'
+            int runCounter = 0
+            for (runner in assembledCucumberRunnerFiles) {
+                // create file using the key, which represents the cuke runner filename
+                File cukeRunnerFile = new File(runner.key)
+                cukeRunnerFile.withWriter { writer ->
+                    // replace cuke runner tokens supplying the value of the map, which represents the feature file name
+                    writer.write(findAndReplaceCukeRunnerTokens(runner.value, runCounter))
+                }
+                runCounter++
+                log.info("Successfully created Cuke Runner '${Paths.get(cukeRunnerFile.absolutePath).fileName}' " +
+                        "for the following feature file: '${Paths.get(runner.value).fileName}'.")
             }
-            runCounter++
-            log.info("Successfully created Cuke Runner '${Paths.get(cukeRunnerFile.absolutePath).fileName}' " +
-                    "for the following feature file: '${Paths.get(runner.value).fileName}'.")
         }
+
     }
 
 }

@@ -1,0 +1,1 @@
+Feature: A Feature File Without Scenarios

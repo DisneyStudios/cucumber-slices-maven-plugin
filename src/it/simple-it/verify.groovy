@@ -1,0 +1,3 @@
+// always passes
+
+assert true
