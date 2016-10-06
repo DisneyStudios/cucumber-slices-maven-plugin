@@ -1,5 +1,5 @@
 
-File runner = new File(basedir, 'target/it/empty-feature-file/src/test/groovy/parallel_runners/ParallelRunner0.groovy')
+File runner = new File(basedir, 'src/test/groovy/parallel_runners/ParallelRunner0.groovy')
 File logFile = new File(basedir, 'build.log')
 
 String content = logFile.text
