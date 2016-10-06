@@ -38,20 +38,26 @@ class GenerateMojo extends AbstractMojo {
         FeatureFileAssembler featureFileAssembler = new FeatureFileAssembler(cucumberTags)
         CucumberRunWithWriter cucumberRunWithWriter = new CucumberRunWithWriter(parallelRunnersDirectory, templatesDirectory)
 
-        featureFileNames.each { name ->
-            // format the contents of the supplied feature file as JSON
-            String json = featureFileParser.formatAsJson(name)
+        if (featureFileNames.size() == 0) {
+            log.warn("Missing feature files!! Skipping further processing.")
+        } else {
+            featureFileNames.each { name ->
+                // format the contents of the supplied feature file as JSON
+                String json = featureFileParser.formatAsJson(name)
 
-            // now, re-assemble the feature file contents (represented as JSON) into plain text files
-            // with 1 scenario per feature file
-            featureFileAssembler.assembleFeatureFileFromJson(json)
+                // now, re-assemble the feature file contents (represented as JSON) into plain text files
+                // with 1 scenario per feature file
+                featureFileAssembler.assembleFeatureFileFromJson(json)
 
-            // assemble the Cucumber Runner files. This will place each named feature file into a linked hash map
-            cucumberRunWithWriter.assembleCucumberRunnerFiles(featureFileAssembler)
+                // assemble the Cucumber Runner files. This will place each named feature file into a linked hash map
+                cucumberRunWithWriter.assembleCucumberRunnerFiles(featureFileAssembler)
+            }
+
+            // write out the Cucumber Runner files
+            log.info("Creating the Cucumber Runner files...")
+            cucumberRunWithWriter.writeCucumberRunWithFiles()
         }
 
-        // write out the Cucumber Runner files
-        log.info("Creating the Cucumber Runner files...")
-        cucumberRunWithWriter.writeCucumberRunWithFiles()
+
     }
 }
