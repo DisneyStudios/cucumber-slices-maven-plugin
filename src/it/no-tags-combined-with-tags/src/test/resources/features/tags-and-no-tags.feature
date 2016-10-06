@@ -15,7 +15,7 @@ Feature: A Feature File Without Tags
     And click the Submit button
     Then the page title returned is "Star Wars - Google Search"
 
-  @smoke @regression
+  @test-tag
   Scenario: The search for avengers
     Given I am on Google home page
     When I enter the keyword of "Avengers Age of Ultron"

@@ -62,7 +62,7 @@ I want the ability to use Google's search feature
 So that I can retrieve useful and accurate information
 
 
-@smoke @regression
+@test-tag
 Scenario: The search for avengers
 Given I am on Google home page
 When I enter the keyword of "Avengers Age of Ultron"
