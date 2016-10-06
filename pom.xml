@@ -13,8 +13,6 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <clm.applicationId>cucumber-slices-maven-plugin</clm.applicationId>
-        <clm.version>2.5.0-01</clm.version>    <!-- 2016-09-09 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <gmavenplus.version>1.5</gmavenplus.version>
         <groovy.version>2.4.7</groovy.version>
@@ -159,12 +157,6 @@
         </profile>
         <profile>
             <id>nexusclm</id>
-            <activation>
-                <!-- You need entries in settings.xml to configure the link to the server, see readme -->
-                <property>
-                    <name>nexusclm.serverUrl</name>
-                </property>
-            </activation>
             <build>
                 <plugins>
                     <plugin>
