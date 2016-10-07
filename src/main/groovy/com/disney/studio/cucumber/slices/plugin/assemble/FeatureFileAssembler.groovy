@@ -27,9 +27,10 @@ class FeatureFileAssembler {
      * The Cucumber tags that one would expect to filter on when creating the feature files
      */
     FeatureFileAssembler(List<String> expectedTags) {
-//        assert expectedTags.size() > 0, "Invalid tag collection!! The supplied collection of Cucumber tags is empty. Make sure to define your list of tags within the POM file"
-//        boolean isTagFormattedCorrectly = expectedTags.every { it.contains('@') }
-//        assert isTagFormattedCorrectly, "Missing '@' character!!! One or more of the supplied Cucumber tags '$expectedTags' is not properly formatted"
+        if (expectedTags.size() > 0) {
+            boolean isTagFormattedCorrectly = expectedTags.every { it.contains('@') }
+            assert isTagFormattedCorrectly, "Missing '@' character!!! One or more of the supplied Cucumber tags '$expectedTags' is not properly formatted"
+        }
 
         this.expectedTags = expectedTags
         this.jsonSlurper = new JsonSlurper()
@@ -155,13 +156,18 @@ class FeatureFileAssembler {
             processElement(element)
             // setup the Feature's narrative
             processFeatureNarrative(parsedJson)
-            writeFeatureFile()
-            // write out the information contained within the collected data structures to a Feature file
-//            if (isScenarioTagged()) {
-//                writeFeatureFile()
-//            } else {
-//                log.warn("Skipping further processing because the Scenario's tags, $actualTags, do not match the supplied tag filter, $expectedTags!")
-//            }
+
+            if (expectedTags.size() > 0) {
+                // write out the information contained within the collected data structures to a Feature file
+                if (isScenarioTagged()) {
+                    writeFeatureFile()
+                } else {
+                    log.warn("Skipping further processing because the Scenario's tags, $actualTags, do not match the supplied tag filter, $expectedTags!")
+                }
+            } else {
+                writeFeatureFile()
+            }
+
             // clear out the data structures, except for the background steps ... the background steps get cleared out upon
             // reading in a NEW feature file
             clearSuppliedDataStructures([featureInformation, actualTags, generalSteps])
@@ -185,13 +191,18 @@ class FeatureFileAssembler {
         processElement(element)
         // setup the Feature's narrative
         processFeatureNarrative(parsedJson)
-        writeFeatureFile()
-        // write out the information contained within the collected data structures to a Feature file
-//        if (isScenarioTagged()) {
-//            writeFeatureFile()
-//        } else {
-//            log.warn("Skipping further processing because the Scenario's tags, $actualTags, do not match the supplied tag filter, $expectedTags!")
-//        }
+
+        if (expectedTags.size() > 0) {
+            // write out the information contained within the collected data structures to a Feature file
+            if (isScenarioTagged()) {
+                writeFeatureFile()
+            } else {
+                log.warn("Skipping further processing because the Scenario's tags, $actualTags, do not match the supplied tag filter, $expectedTags!")
+            }
+        } else {
+            writeFeatureFile()
+        }
+
         // clear out the data structures, except for the background steps ... the background steps get cleared out upon
         // reading in a NEW feature file
         clearSuppliedDataStructures([featureInformation, actualTags, generalSteps])

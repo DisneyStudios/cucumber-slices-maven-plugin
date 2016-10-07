@@ -20,7 +20,7 @@ class TestFeatureFileCollector {
 
     @Test
     void shouldReturnFeatureFileCollection() {
-        String featuresDirPath = 'src/it/simple-it/src/test/resources/features'
+        String featuresDirPath = 'src/it/multiple-feature-files/src/test/resources/features'
         FeatureFileCollector featureFileCollector = new FeatureFileCollector(featuresDirPath)
         List<String> featureFiles = featureFileCollector.getFeatureFileNameCollection()
         assert featureFiles.size() > 0
