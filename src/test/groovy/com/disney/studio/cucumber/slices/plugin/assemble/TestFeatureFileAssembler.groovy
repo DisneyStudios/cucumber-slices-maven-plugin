@@ -14,6 +14,11 @@ class TestFeatureFileAssembler {
         new FeatureFileAssembler(['test-tag'])
     }
 
+    @Test(expected = AssertionError)
+    void shouldFailDueToMalformedTags() {
+        new FeatureFileAssembler(['@test-tag1', 'test-tag2'])
+    }
+
     @Test
     void shouldPassWithProperlyFormattedTag() {
         FeatureFileAssembler featureFileAssembler = new FeatureFileAssembler(['@test-tag'])
