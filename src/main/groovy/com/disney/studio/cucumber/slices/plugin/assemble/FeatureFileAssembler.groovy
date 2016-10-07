@@ -29,7 +29,7 @@ class FeatureFileAssembler {
     FeatureFileAssembler(List<String> expectedTags) {
         if (expectedTags.size() > 0) {
             boolean isTagFormattedCorrectly = expectedTags.every { it.contains('@') }
-            assert isTagFormattedCorrectly, "Missing '@' character!!! One or more of the supplied Cucumber tags '$expectedTags' is not properly formatted"
+            assert isTagFormattedCorrectly, "Missing '@' character!!! One or more of the supplied Cucumber tags, '$expectedTags', is not properly formatted in the POM file"
         }
 
         this.expectedTags = expectedTags
