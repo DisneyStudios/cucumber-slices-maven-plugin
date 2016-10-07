@@ -22,7 +22,7 @@ String actualContent3 = ''
 String actualContent4 = ''
 String actualContent5 = ''
 
-
+int actualNumberOfFeatureFiles = 0
 parallelFeatures.eachFileRecurse(FileType.FILES) { featureFile ->
     if (featureFile.name.contains('the-search-for-Mickey-Mouse')) {
         actualContent0 = featureFile.text
@@ -42,7 +42,10 @@ parallelFeatures.eachFileRecurse(FileType.FILES) { featureFile ->
     if (featureFile.name.contains('the-search-for-Pluto')) {
         actualContent5 = featureFile.text
     }
+    actualNumberOfFeatureFiles++
 }
+
+assert actualNumberOfFeatureFiles == 6
 
 assert actualContent0 == """\
 Feature: Searching Google Using Scenario Outline:  The search for Mickey Mouse

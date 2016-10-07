@@ -10,6 +10,7 @@ assert runner1.exists()
 String actualContent0 = ''
 String actualContent1 = ''
 
+int actualNumberOfFeatureFiles = 0
 parallelFeatures.eachFileRecurse(FileType.FILES) { featureFile ->
     if (featureFile.name.contains('the-search-for-cheese')) {
         actualContent0 = featureFile.text
@@ -17,7 +18,10 @@ parallelFeatures.eachFileRecurse(FileType.FILES) { featureFile ->
     if (featureFile.name.contains('the-search-for-star-wars')) {
         actualContent1 = featureFile.text
     }
+    actualNumberOfFeatureFiles++
 }
+
+assert actualNumberOfFeatureFiles == 2
 
 assert actualContent0 == """\
 Feature: A Feature File Without Tags:  The search for cheese

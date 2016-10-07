@@ -30,7 +30,6 @@ parallelFeatures.eachFileRecurse(FileType.FILES) { featureFile ->
     if (featureFile.name.contains('the-search-for-donald-duck')) {
         actualContent3 = featureFile.text
     }
-
     actualNumberOfFeatureFiles++
 }
 
