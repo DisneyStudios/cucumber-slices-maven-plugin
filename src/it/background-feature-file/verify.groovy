@@ -7,19 +7,19 @@ File parallelFeatures = new File(basedir, 'src/test/resources/parallel_features'
 assert runner0.exists()
 assert runner1.exists()
 
-String fileContent0 = ''
-String fileContent1 = ''
+String actualContent0 = ''
+String actualContent1 = ''
 
 parallelFeatures.eachFileRecurse(FileType.FILES) { featureFile ->
     if (featureFile.name.contains('the-search-for-java')) {
-        fileContent0 = featureFile.text
+        actualContent0 = featureFile.text
     }
     if (featureFile.name.contains('the-search-for-sauce-labs')) {
-        fileContent1 = featureFile.text
+        actualContent1 = featureFile.text
     }
 }
 
-assert fileContent0 == """\
+assert actualContent0 == """\
 Feature: Searching Google Using Background:  The search for Java
 
 
@@ -34,7 +34,7 @@ Then the page title returned is "Java - Google Search"
 
 """
 
-assert fileContent1 == """\
+assert actualContent1 == """\
 Feature: Searching Google Using Background:  The search for Sauce Labs
 
 

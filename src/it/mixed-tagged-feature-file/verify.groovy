@@ -9,23 +9,23 @@ assert runner0.exists()
 assert runner1.exists()
 assert runner2.exists()
 
-String fileContent0 = ''
-String fileContent1 = ''
-String fileContent2 = ''
+String actualContent0 = ''
+String actualContent1 = ''
+String actualContent2 = ''
 
 parallelFeatures.eachFileRecurse(FileType.FILES) { featureFile ->
     if (featureFile.name.contains('the-search-for-cheese')) {
-        fileContent0 = featureFile.text
+        actualContent0 = featureFile.text
     }
     if (featureFile.name.contains('the-search-for-star-wars')) {
-        fileContent1 = featureFile.text
+        actualContent1 = featureFile.text
     }
     if (featureFile.name.contains('the-search-for-avengers')) {
-        fileContent2 = featureFile.text
+        actualContent2 = featureFile.text
     }
 }
 
-assert fileContent0 == """\
+assert actualContent0 == """\
 Feature: A Feature File Without Tags:  The search for cheese
 As a casual user
 I want the ability to use Google's search feature
@@ -40,7 +40,7 @@ Then the page title returned is "Cheese - Google Search"
 
 """
 
-assert fileContent1 == """\
+assert actualContent1 == """\
 Feature: A Feature File Without Tags:  The search for star wars
 As a casual user
 I want the ability to use Google's search feature
@@ -55,7 +55,7 @@ Then the page title returned is "Star Wars - Google Search"
 
 """
 
-assert fileContent2 == """\
+assert actualContent2 == """\
 Feature: A Feature File Without Tags:  The search for avengers
 As a casual user
 I want the ability to use Google's search feature

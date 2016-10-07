@@ -1,3 +1,0 @@
-// always passes
-
-assert true

@@ -5,15 +5,15 @@ File parallelFeatures = new File(basedir, 'src/test/resources/parallel_features'
 
 assert runner0.exists()
 
-String fileContent0 = ''
+String actualContent0 = ''
 
 parallelFeatures.eachFileRecurse(FileType.FILES) { featureFile ->
     if (featureFile.name.contains('the-search-for-cheese')) {
-        fileContent0 = featureFile.text
+        actualContent0 = featureFile.text
     }
 }
 
-assert fileContent0 == """\
+assert actualContent0 == """\
 Feature: A Feature File With Tags:  The search for cheese
 As a casual user
 I want the ability to use Google's search feature
