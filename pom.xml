@@ -7,10 +7,40 @@
     <version>1.1.0</version>
     <packaging>maven-plugin</packaging>
 
-    <name>cucumber-slices-maven-plugin Maven Plugin</name>
-
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>The Cucumber Slices Plugin is designed to parse Cucumber feature files with 1 or more scenarios
+        into many feature files, each with 1 scenario per feature file. Each parsed feature file is associated with a
+        Cucumber runner file that is generated at runtime. The Cucumber runner files can be executed in parallel
+        using Maven's Surefire or Failsafe Plugin.
+    </description>
     <!-- FIXME change it to the project's website -->
     <url>http://maven.apache.org</url>
+
+    <licenses>
+        <license>
+            <name>A placeholder for license's name</name>
+            <url>A placehosder for license's url</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Robert Stagner</name>
+            <email>robert.stagner@disney.com</email>
+            <organization>The Walt Disney Company - Studio Technology</organization>
+            <roles>
+                <role>QA Test Engineer</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>America/Los_Angeles</timezone>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>A placehoder for scm's connection</connection> <!--scm:git:git://github.com/simpligility/ossrh-demo.git-->
+        <developerConnection>A placeholder for scm's developer connection</developerConnection> <!--scm:git:ssh://github.com:simpligility/ossrh-demo.git-->
+        <url>A placeholder for scm's url</url> <!--http://github.com/simpligility/ossrh-demo/tree/master-->
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -182,17 +212,4 @@
             </build>
         </profile>
     </profiles>
-
-    <developers>
-        <developer>
-            <name>Robert Stagner</name>
-            <email>robert.stagner@disney.com</email>
-            <organization>The Walt Disney Company - Studio Technology</organization>
-            <roles>
-                <role>QA Test Engineer</role>
-                <role>Developer</role>
-            </roles>
-            <timezone>America/Los_Angeles</timezone>
-        </developer>
-    </developers>
 </project>
