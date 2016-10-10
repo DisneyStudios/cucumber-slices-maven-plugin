@@ -37,8 +37,10 @@
     </developers>
 
     <scm>
-        <connection>A placehoder for scm's connection</connection> <!--scm:git:git://github.com/simpligility/ossrh-demo.git-->
-        <developerConnection>A placeholder for scm's developer connection</developerConnection> <!--scm:git:ssh://github.com:simpligility/ossrh-demo.git-->
+        <connection>A placehoder for scm's connection
+        </connection> <!--scm:git:git://github.com/simpligility/ossrh-demo.git-->
+        <developerConnection>A placeholder for scm's developer connection
+        </developerConnection> <!--scm:git:ssh://github.com:simpligility/ossrh-demo.git-->
         <url>A placeholder for scm's url</url> <!--http://github.com/simpligility/ossrh-demo/tree/master-->
     </scm>
 
@@ -91,6 +93,32 @@
                         <id>help-goal</id>
                         <goals>
                             <goal>helpmojo</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
                         </goals>
                     </execution>
                 </executions>
