@@ -4,6 +4,10 @@ import groovy.util.logging.Slf4j
 
 import java.nio.file.Paths
 
+/**
+ * A class designed to create Cucumber Runner files, based on the <code>cuke_runner_template.txt</code>, which is contained
+ * within a <code>templates</code> directory.
+ */
 @Slf4j
 class CucumberRunWithWriter {
     private static final String CUKE_RUNNER_TEMPLATE_FILE = 'cuke_runner_template.txt'

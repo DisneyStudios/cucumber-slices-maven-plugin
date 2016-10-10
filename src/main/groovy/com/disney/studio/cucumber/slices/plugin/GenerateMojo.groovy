@@ -12,6 +12,10 @@ import org.apache.maven.plugins.annotations.LifecyclePhase
 import org.apache.maven.plugins.annotations.Mojo
 import org.apache.maven.plugins.annotations.Parameter
 
+/**
+ * Generates a set of Cucumber feature files and runners from an existing list of feature files. Each of the generated
+ * feature files has 1 scenario and each of the generated Cucumber runner files is associated with 1 feature file.
+ */
 @Slf4j
 @Mojo(name = "generate", defaultPhase = LifecyclePhase.GENERATE_TEST_RESOURCES)
 class GenerateMojo extends AbstractMojo {
