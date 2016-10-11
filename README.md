@@ -226,3 +226,12 @@ To demonstrate what the output looks like, let's assume we've used the Groovy te
 As shown, a `TestGroup` directory is created for each of the parallel test runs.  Contained within `TestGroup` directory is the `cucumber.json` and `cucumber.xml` files.
 
 IMPORTANT: The Cucumber Slices Plugin is not designed to aggregate the test output into a single report. There are other plugins that can assist in this (e.g., [Masterthought's Cucumber Reporting Plugin](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22net.masterthought%22%20AND%20a%3A%22maven-cucumber-reporting%22))
+
+## Contributing
+
+Before contributing code to USD, we ask that you sign a Contributor License Agreement (CLA).  At the root of this repository you can find the two possible CLAs:
+
+1. USD_CLA_Corporate.pdf: please sign this one for corporate use
+2. USD_CLA_Individual.pdf: please sign this one if you're an individual contributor
+
+Once your CLA is signed, send it to EMAIL_ADDRESS_HERE (please make sure to include your github username) and wait for confirmation that we've received it.  After that, you can submit pull requests.
