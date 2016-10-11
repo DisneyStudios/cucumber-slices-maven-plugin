@@ -1,8 +1,6 @@
-Amending Apache license language & file headers.
+                               Modified Apache 2.0 License
 
-New text:
-
-     Copyright 2016, The Walt Disney Company
+                         Copyright 2016, The Walt Disney Company
 
      Licensed under the Apache License, Version 2.0 (the "Apache License")
      with the following modification; you may not use this file except in
