@@ -1,6 +1,6 @@
                                Modified Apache 2.0 License
 
-                         Copyright 2016, The Walt Disney Studios
+                         Copyright 2016, Walt Disney Studios
 
      Licensed under the Apache License, Version 2.0 (the "Apache License")
      with the following modification; you may not use this file except in
