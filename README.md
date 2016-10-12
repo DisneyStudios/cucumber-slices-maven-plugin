@@ -229,7 +229,7 @@ IMPORTANT: The Cucumber Slices Plugin is not designed to aggregate the test outp
 
 ## Contributing
 
-Before contributing code to USD, we ask that you sign a Contributor License Agreement (CLA).  At the root of this repository you can find the two possible CLAs:
+Before contributing code to Cucumber Slices, we ask that you sign a Contributor License Agreement (CLA).  At the root of this repository you can find the two possible CLAs:
 
 1. USD_CLA_Corporate.pdf: please sign this one for corporate use
 2. USD_CLA_Individual.pdf: please sign this one if you're an individual contributor
