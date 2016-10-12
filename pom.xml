@@ -18,8 +18,8 @@
 
     <licenses>
         <license>
-            <name>A placeholder for license's name</name>
-            <url>A placehosder for license's url</url>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
 
@@ -30,7 +30,7 @@
             <organization>The Walt Disney Company - Studio Technology</organization>
             <roles>
                 <role>Senior QA Test Engineer</role>
-                <role>Developer</role>
+                <role>Plugin Creator</role>
             </roles>
             <timezone>America/Los_Angeles</timezone>
         </developer>
