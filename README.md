@@ -221,7 +221,7 @@ The output of each test run is contained within the project's `target` directory
 
 To demonstrate what the output looks like, let's assume we've used the Groovy template file contained in the [Setup](#setup) section above.  Within this template, the `format` parameter is  `["pretty", "json:target/cucumber-report/TestGroup<runner index>/cucumber.json", "junit:target/cucumber-report/TestGroup<runner index>/cucumber.xml"]`. The Cucumber JSON files and the JUnit files are written to each of the TestGroup folders at runtime. The image below captures the test run's output
 
-![Sample Outpu](./images/cucumber-report-directory-structure.png)
+![Sample Output](./images/cucumber-report-directory-structure.png)
 
 As shown, a `TestGroup` directory is created for each of the parallel test runs.  Contained within `TestGroup` directory is the `cucumber.json` and `cucumber.xml` files.
 
