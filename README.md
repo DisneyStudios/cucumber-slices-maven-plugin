@@ -116,11 +116,11 @@ The following is a breakdown of the tags noted in the template
 
 **&lt;runner index&gt;**: this tag represents the value of a counter that is used to designate a unique Cucumber Runner class. Example: `ParallelRunner0`, `ParallelRunner1`, etc.  There should be 1 ParallelRunner class generated for each feature file created at runtime.
 
-## Disassemble & Reassemble Process Details
+## Disassemble and Reassemble Process Details
 
 The process of parsing and reassembling the feature files is outlined below:
 
-1. At runtime, during Maven's **generate-test-resources** phase, the **generate** goal is executed
+1. At runtime, during Maven's **generate-test-resources** or **generate-test-sources** phase, the **generate** goal is executed
 2. During execution,
     1. Read in all of the Cucumber feature files
     2. Parse the plain text files into JSON
@@ -226,6 +226,16 @@ To demonstrate what the output looks like, let's assume we've used the Groovy te
 As shown, a `TestGroup` directory is created for each of the parallel test runs.  Contained within `TestGroup` directory is the `cucumber.json` and `cucumber.xml` files.
 
 IMPORTANT: The Cucumber Slices Plugin is not designed to aggregate the test output into a single report. There are other plugins that can assist in this (e.g., [Masterthought's Cucumber Reporting Plugin](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22net.masterthought%22%20AND%20a%3A%22maven-cucumber-reporting%22))
+
+#FAQs
+
+* How does this plugin differ from the cucumber-jvm-parallel-plugin?
+
+Answer
+
+* Can I use this plugin within Maven's test phase?
+
+No. The plugin must be used prior to the test-compile phase.  For further information see the [Disassemble and Reassemble Process Details](#disassemble-and-reassemble-process-details) section.
 
 ## Contributing
 
