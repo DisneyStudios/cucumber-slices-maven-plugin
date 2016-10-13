@@ -227,13 +227,16 @@ As shown, a `TestGroup` directory is created for each of the parallel test runs.
 
 IMPORTANT: The Cucumber Slices Plugin is not designed to aggregate the test output into a single report. There are other plugins that can assist in this (e.g., [Masterthought's Cucumber Reporting Plugin](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22net.masterthought%22%20AND%20a%3A%22maven-cucumber-reporting%22))
 
-#FAQs
+## FAQs
 
 * How does this plugin differ from the [cucumber-jvm-parallel-plugin](https://github.com/temyers/cucumber-jvm-parallel-plugin)?
 
-The cucumber-jvm-parallel-plugin automatically generates a Cucumber JUnit runner for each feature file found within your project.  The Cucumber Slices Plugin automatically generates a Cucumber JUnit runner for each of the scenarios contained within the feature file.  
+The cucumber-jvm-parallel-plugin automatically generates a Cucumber JUnit runner for each feature file found within your project.  The Cucumber Slices Plugin automatically generates a Cucumber JUnit runner for each of the scenarios contained within the feature file. To better explain the difference, let's walk through an example.  
 
-For example, let's say we had 2 feature files -- one with 5 scenarios and the other with 10 scenarios.  The Cucumber Slices Plugin automatically generates 15 feature files (1 scenario per feature file).  This leads to the possibility of setting aside 2, 3, 4 or N number of JVM forks (limited by your hardware's specifications). On the other hand, cucumber-jvm-parallel-plugin would set aside a maximum of 2 JVM forks -- one for each feature file. The end result of this is that the tests can complete sooner.  
+#### Example
+Let's say we had 2 feature files -- one with 5 scenarios and the other with 10 scenarios.  The Cucumber Slices Plugin automatically generates 15 feature files (1 scenario per feature file).  This leads to the possibility of setting aside 2, 3, 4 or N number of JVM forks, with each of the forked processes running one of the scenarios contained in the feature file. 
+
+On the other hand, the cucumber-jvm-parallel-plugin would run, at most, 2 JVM forks -- one for each feature file -- since the plugin looks for runners associated with the feature file.  
  
 * Can I use this plugin within Maven's test phase?
 
