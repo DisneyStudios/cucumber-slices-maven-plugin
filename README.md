@@ -229,10 +229,12 @@ IMPORTANT: The Cucumber Slices Plugin is not designed to aggregate the test outp
 
 #FAQs
 
-* How does this plugin differ from the cucumber-jvm-parallel-plugin?
+* How does this plugin differ from the [cucumber-jvm-parallel-plugin](https://github.com/temyers/cucumber-jvm-parallel-plugin)?
 
-Answer
+The cucumber-jvm-parallel-plugin automatically generates a Cucumber JUnit runner for each feature file found within your project.  The Cucumber Slices Plugin automatically generates a Cucumber JUnit runner for each of the scenarios contained within the feature file.  
 
+For example, let's say we had 2 feature files -- one with 5 scenarios and the other with 10 scenarios.  The Cucumber Slices Plugin automatically generates 15 feature files (1 scenario per feature file).  This leads to the possibility of setting aside 2, 3, 4 or N number of JVM forks (limited by your hardware's specifications). On the other hand, cucumber-jvm-parallel-plugin would set aside a maximum of 2 JVM forks -- one for each feature file. The end result of this is that the tests can complete sooner.  
+ 
 * Can I use this plugin within Maven's test phase?
 
 No. The plugin must be used prior to the test-compile phase.  For further information see the [Disassemble and Reassemble Process Details](#disassemble-and-reassemble-process-details) section.
