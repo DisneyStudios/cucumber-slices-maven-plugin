@@ -233,7 +233,10 @@ IMPORTANT: The Cucumber Slices Plugin is not designed to aggregate the test outp
 
 The cucumber-jvm-parallel-plugin automatically generates a Cucumber JUnit runner for each feature file found within your project.  The Cucumber Slices Plugin automatically generates a Cucumber JUnit runner for each of the scenarios contained within the feature file. To better explain the difference, let's walk through an example.  
 
-##### Example
+#### Example
+
+![JVM Parallel vs Slices](./images/jvm-parallel-vs-slices.png)
+
 Let's say we start with 2 feature files -- one with 5 scenarios and the other with 10 scenarios.  The Cucumber Slices Plugin automatically generates 15 feature files (1 scenario per feature file).  This leads to the possibility of setting aside 2, 3, 4 or N number of JVM forks, with each of the forked processes running one of the scenarios contained in the feature file. 
 
 On the other hand, the cucumber-jvm-parallel-plugin would run, at most, 2 JVM forks -- one for each feature file -- since the plugin looks for runners associated with the feature file.  
