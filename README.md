@@ -1,5 +1,5 @@
 # cucumber-slices-maven-plugin
-The Cucumber Slices Plugin is designed to parse Cucumber feature files with 1 or more scenarios into many feature files, each with 1 scenario per feature file.  Each parsed feature file is associated with a Cucumber runner file that is generated at runtime. 
+The Cucumber Slices Plugin is designed to parse Cucumber feature files with 1 or more scenarios into many feature files, each with 1 scenario per feature file.  Each of the parsed feature files is associated with a Cucumber runner that is automatically generated at runtime. 
 
 The plugin can be used in combination with either the [Maven Surefire Plugin](http://maven.apache.org/surefire/maven-surefire-plugin/) or the [Maven Failsafe Plugin](http://maven.apache.org/surefire/maven-failsafe-plugin/) to run each of the generated feature files in parallel. Further information on how to configure these plugins to run Cucumber feature files in parallel is discussed in the [Running Scenarios In Parallel](#running-scenarios-in-parallel) section.
 
