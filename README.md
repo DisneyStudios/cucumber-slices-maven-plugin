@@ -12,7 +12,7 @@ Simply add the following to the `plugins` section of your POM file
             <plugin>
                 <groupId>com.disney.studio.cucumber.slices.plugin</groupId>
                 <artifactId>cucumber-slices-maven-plugin</artifactId>
-                <version>[include lastest version here]</version>
+                <version>[include latest version here]</version>
                 <executions>
                     <execution>
                         <phase>generate-test-resources</phase>
