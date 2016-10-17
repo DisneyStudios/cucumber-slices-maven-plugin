@@ -223,9 +223,11 @@ To demonstrate what the output looks like, let's assume we've used the Groovy te
 
 ![Sample Output](./images/cucumber-report-directory-structure.png)
 
-As shown, a `TestGroup` directory is created for each of the parallel test runs.  Contained within `TestGroup` directory is the `cucumber.json` and `cucumber.xml` files.
+As shown, contained within the `cucumber-report` directory are each of the JSON and XML files -- one for each scenario.
 
 IMPORTANT: The Cucumber Slices Plugin is not designed to aggregate the test output into a single report. There are other plugins that can assist in this (e.g., [Masterthought's Cucumber Reporting Plugin](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22net.masterthought%22%20AND%20a%3A%22maven-cucumber-reporting%22))
+
+
 
 ## FAQs
 
