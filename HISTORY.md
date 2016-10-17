@@ -1,3 +1,7 @@
+## 1.3.0
+* replaced image file
+* updated README to reflect new image file and changes made to cuke runner template
+
 ## 1.2.0
 * included integration tests
 * updated unit tests
