@@ -83,7 +83,7 @@ import org.junit.runner.RunWith
 @CucumberOptions (
         features = ["classpath:parallel_features/<feature file>"]
         , monochrome = true
-        , format = ["pretty", "json:target/cucumber-report/TestGroup<runner index>/cucumber.json", "junit:target/cucumber-report/TestGroup<runner index>/cucumber.xml"]
+        , format = ["pretty", "json:target/cucumber-report/cucumber<runner index>.json", "rerun:rerun.txt", "junit:target/cucumber-report/cucumber<runner index>.xml"]
         , glue = ["src/test/groovy/path/to/your/steps"]
         , tags = ["~@manual"]
 )
@@ -102,7 +102,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
     features={"classpath:parallel_features/<feature file>"}
     , monochrome = true
-    , format = {"pretty", "json:target/cucumber-report/TestGroup<runner index>/cucumber.json", "junit:target/cucumber-report/TestGroup<runner index>/cucumber.xml"}
+    , format = {"pretty", "json:target/cucumber-report/cucumber<runner index>.json", "rerun:rerun.txt", "junit:target/cucumber-report/cucumber<runner index>.xml"}
     , glue = {"com.mycompany.cucumber.stepdefinitions"} // package name where the step definition classes are kept
     , tags = {"~@manual"}
     )
@@ -219,7 +219,7 @@ See Failsafe's documentation, [Fork Options and Parallel Test Execution](https:/
 
 The output of each test run is contained within the project's `target` directory.  This includes all of the Failsafe output as well as the output from Cucumber.
 
-To demonstrate what the output looks like, let's assume we've used the Groovy template file contained in the [Setup](#setup) section above.  Within this template, the `format` parameter is  `["pretty", "json:target/cucumber-report/TestGroup<runner index>/cucumber.json", "junit:target/cucumber-report/TestGroup<runner index>/cucumber.xml"]`. The Cucumber JSON files and the JUnit files are written to each of the TestGroup folders at runtime. The image below captures the test run's output
+To demonstrate what the output looks like, let's assume we've used the Groovy template file contained in the [Setup](#setup) section above.  Within this template, the `format` parameter is  `["pretty", "json:target/cucumber-report/cucumber<runner index>.json", "rerun:rerun.txt", "junit:target/cucumber-report/cucumber<runner index>.xml"]`. The Cucumber JSON files and the JUnit files are automatically written to the `target/cucumber-report` directory at runtime. The image below captures the test run's output
 
 ![Sample Output](./images/cucumber-report-directory-structure.png)
 

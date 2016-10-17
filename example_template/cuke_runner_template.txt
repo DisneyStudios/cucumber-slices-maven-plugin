@@ -6,7 +6,7 @@ import org.junit.runner.RunWith
 @CucumberOptions (
         features = ["classpath:parallel_features/<feature file>"]
         , monochrome = true
-        , format = ["pretty", "json:target/cucumber-report/TestGroup<runner index>/cucumber.json", "rerun:rerun.txt", "junit:target/cucumber-report/TestGroup<runner index>/cucumber.xml"]
+        , format = ["pretty", "json:target/cucumber-report/cucumber<runner index>.json", "rerun:rerun.txt", "junit:target/cucumber-report/cucumber<runner index>.xml"]
         , glue = ["src/test/groovy/path/to/your/steps"]
         , tags = ["~@manual"]
 )
