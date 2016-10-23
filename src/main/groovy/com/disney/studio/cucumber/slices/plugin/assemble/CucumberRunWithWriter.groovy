@@ -71,12 +71,27 @@ class ParallelRunner<runner index> {
         return newCode
     }
 
-    void assembleCucumberRunnerFiles(FeatureFileAssembler featureFileAssembler) {
+    void assembleCucumberRunnerFiles(FeatureFileAssembler featureFileAssembler, CucumberRunnerExtension cucumberRunnerExtension) {
         int runCounter = 0
 
+        String cukeRunnerFileName
+        String featureFileName
+        String cukeRunnerExtension
+
+        // determine and assign the runner's extension
+        switch (cucumberRunnerExtension) {
+            case CucumberRunnerExtension.groovy:
+                cukeRunnerExtension = cucumberRunnerExtension.name()
+                break
+            case CucumberRunnerExtension.java:
+                cukeRunnerExtension = cucumberRunnerExtension.name()
+                break
+        }
+
+        // create the data structure representing the assembled cucumber runner files
         for (featureFile in featureFileAssembler.featureFileWriter.featureFiles) {
-            def cukeRunnerFileName = "$parallelRunnersDirectory/ParallelRunner${runCounter}.groovy"
-            def featureFileName = Paths.get(featureFile.toString()).fileName.toString()
+            cukeRunnerFileName = "$parallelRunnersDirectory/ParallelRunner${runCounter}.${cukeRunnerExtension}"
+            featureFileName = Paths.get(featureFile.toString()).fileName.toString()
             assembledCucumberRunnerFiles[cukeRunnerFileName] = featureFileName
             runCounter++
         }

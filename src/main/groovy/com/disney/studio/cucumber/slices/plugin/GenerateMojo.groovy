@@ -58,7 +58,7 @@ class GenerateMojo extends AbstractMojo {
                 featureFileAssembler.assembleFeatureFileFromJson(json)
 
                 // assemble the Cucumber Runner files. This will place each named feature file into a linked hash map
-                cucumberRunWithWriter.assembleCucumberRunnerFiles(featureFileAssembler)
+                cucumberRunWithWriter.assembleCucumberRunnerFiles(featureFileAssembler, cucumberRunnerExtension)
             }
 
             // write out the Cucumber Runner files

@@ -99,6 +99,8 @@ class ParallelRunner<runner index> {
 ### Java Example of `cuke_runner_template.txt`
 
 ```java
+package <your package name here>;
+
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
