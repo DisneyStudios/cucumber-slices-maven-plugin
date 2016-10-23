@@ -254,6 +254,38 @@ On the other hand, the cucumber-jvm-parallel-plugin would run, at most, 2 JVM fo
 
 No. The plugin must be used prior to the test-compile phase.  For further information see the [Disassemble and Reassemble Process Details](#disassemble-and-reassemble-process-details) section.
 
+**Q3. How do I use this plugin with a project developed in Java?**
+
+Configure the Cucumber Slices Plugin with the `cucumberRunnerExtension` option. 
+
+```xml
+        <plugins>
+            <plugin>
+                <groupId>com.disney.studio.cucumber.slices.plugin</groupId>
+                <artifactId>cucumber-slices-maven-plugin</artifactId>
+                <version>[include latest version here]</version>
+                <executions>
+                    <execution>
+                        <phase>generate-test-resources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <cucumberTags>
+                                <param>@regression</param>
+                            </cucumberTags>
+                            <templatesDirectory>src/test/resources/templates</templatesDirectory>
+                            <parallelRunnersDirectory>src/test/groovy/parallel_runners</parallelRunnersDirectory>
+                            <cucumberRunnerExtension>java</cucumberRunnerExtension>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+```
+
+Also, as noted in the [Setup](#setup) section, remember to alter the default `cuke_runner_template` file to reflect your Java code.
+
 ## Contributing
 
 Before contributing code to Cucumber Slices, we ask that you sign a Contributor License Agreement (CLA).  At the root of this repository you can find the two possible CLAs:

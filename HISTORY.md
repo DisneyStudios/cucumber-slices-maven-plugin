@@ -1,3 +1,6 @@
+## 1.4.0
+* included support for a `cucumberRunnerExtension` configuration property
+
 ## 1.3.0
 * replaced image file
 * updated README to reflect new image file and changes made to cuke runner template
