@@ -1,6 +1,7 @@
 package com.disney.studio.cucumber.slices.plugin
 
 import com.disney.studio.cucumber.slices.plugin.assemble.CucumberRunWithWriter
+import com.disney.studio.cucumber.slices.plugin.assemble.CucumberRunnerExtension
 import com.disney.studio.cucumber.slices.plugin.assemble.FeatureFileAssembler
 import com.disney.studio.cucumber.slices.plugin.disassemble.FeatureFileCollector
 import com.disney.studio.cucumber.slices.plugin.disassemble.FeatureFileParser
@@ -31,6 +32,9 @@ class GenerateMojo extends AbstractMojo {
 
     @Parameter(property = 'cucumberTags')
     private List<String> cucumberTags
+
+    @Parameter(defaultValue = "groovy", property = 'cucumberRunnerExtension')
+    private CucumberRunnerExtension cucumberRunnerExtension
 
     public void execute() throws MojoExecutionException, MojoFailureException {
         // Initialize the disassemble objects

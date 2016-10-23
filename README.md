@@ -56,6 +56,11 @@ Cucumber Slices supports the following `<configuration>` settings
 * _property_: cucumberTags
 * _required_: NO
 
+**cucumberRunnerExtension**: The file extension which defines the Cucumber runner class generated at runtime. Accepted values are `groovy` or `java`. 
+* _default value_: groovy
+* _property_: cucumberRunnerExtension
+* _required_: NO
+
 The property values listed in each of the configuration settings can be used in place of the POM file settings.  For instance, you may execute the following Maven command
 
 ```maven
