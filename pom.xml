@@ -13,8 +13,7 @@
         Cucumber runner file that is generated at runtime. The Cucumber runner files can be executed in parallel
         using Maven's Surefire or Failsafe Plugin.
     </description>
-    <!-- FIXME change it to the project's website -->
-    <url>http://maven.apache.org</url>
+    <url>https://github.com/DisneyStudios/cucumber-slices-maven-plugin</url>
 
     <licenses>
         <license>
@@ -37,11 +36,9 @@
     </developers>
 
     <scm>
-        <connection>A placehoder for scm's connection
-        </connection> <!--scm:git:git://github.com/simpligility/ossrh-demo.git-->
-        <developerConnection>A placeholder for scm's developer connection
-        </developerConnection> <!--scm:git:ssh://github.com:simpligility/ossrh-demo.git-->
-        <url>A placeholder for scm's url</url> <!--http://github.com/simpligility/ossrh-demo/tree/master-->
+        <connection>scm:git:git://github.com/DisneyStudios/cucumber-slices-maven-plugin.git</connection>
+        <developerConnection>scm:git:ssh://github.com:DisneyStudios/cucumber-slices-maven-plugin.git</developerConnection>
+        <url>https://github.com/DisneyStudios/cucumber-slices-maven-plugin/tree/master</url>
     </scm>
 
     <properties>
