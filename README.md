@@ -293,4 +293,4 @@ Before contributing code to Cucumber Slices, we ask that you sign a Contributor 
 1. USD_CLA_Corporate.pdf: please sign this one for corporate use
 2. USD_CLA_Individual.pdf: please sign this one if you're an individual contributor
 
-Once your CLA is signed, send it to [cucumberslicesplugin@gmail.com](mailto:cucumberslicesplugin@gmail.com) (please make sure to include your github username) and wait for confirmation that we've received it.  After that, you can submit pull requests.
+Once your CLA is signed, send it to [studio.dl-opensource@disney.com](mailto:studio.dl-opensource@disney.com) (please make sure to include your github username) and wait for confirmation that we've received it.  After that, you can submit pull requests.
