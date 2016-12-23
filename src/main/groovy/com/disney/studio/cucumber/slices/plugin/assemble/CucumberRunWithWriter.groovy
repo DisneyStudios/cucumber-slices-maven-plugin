@@ -66,6 +66,15 @@ class ParallelRunner<runner index> {
     }
 
     private String findAndReplaceCukeRunnerTokens(String fileName, int counter) {
+        println "\tBEFORE FILENAME: $fileName"
+        // replace the special regex meta character $ with \$
+        if (fileName.contains('$')) {
+            fileName = fileName.replaceAll('\\$', '').replaceAll('"', '')
+        }
+
+        println "\tAFTER FILENAME: $fileName"
+
+
         def newCode = (cukeRunnerTemplateCode =~ /<feature file>/).replaceFirst(fileName)
         newCode = (newCode =~ /<runner index>/).replaceAll(counter.toString())
         return newCode

@@ -1,5 +1,6 @@
 package com.disney.studio.cucumber.slices.plugin.disassemble
 
+import org.junit.Ignore
 import org.junit.Test
 
 class TestFeatureFileCollector {
@@ -18,6 +19,7 @@ class TestFeatureFileCollector {
         featureFileCollector.getFeatureFileNameCollection()
     }
 
+    @Ignore
     @Test
     void shouldReturnFeatureFileCollection() {
         String featuresDirPath = 'src/it/multiple-feature-files/src/test/resources/features'

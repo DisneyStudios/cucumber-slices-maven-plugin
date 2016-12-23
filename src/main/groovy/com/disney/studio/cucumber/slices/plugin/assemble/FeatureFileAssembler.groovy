@@ -367,6 +367,11 @@ class FeatureFileAssembler {
                 def scenarioOutlineParameter = exampleValue.split('::')[0] // store the outline parameter
                 def replacement = exampleValue.split('::')[1] // store the ACTUAL value of the example
 
+                // replace the special regex meta character $ with \$
+                if (replacement.contains('$')) {
+                    replacement = replacement.replaceAll('\\$', '\\\\\\$')
+                }
+
                 // are the words in the step surrounded by whitespace characters...if the answer is no, then replace all
                 // whitespace with hyphens within the extracted outline parameter.
                 //
@@ -382,6 +387,9 @@ class FeatureFileAssembler {
 
                 // check for matches and replace the parameter with the ACTUAL value
                 if (step =~ /\<$scenarioOutlineParameter\>/) {
+                    println "\tSTEP: $step"
+                    println "\tOUTLINE PARAMETER: \\<$scenarioOutlineParameter\\>"
+                    println "\tREPLACEMENT: $replacement"
                     newStepStatement = (step =~ /\<$scenarioOutlineParameter\>/).replaceFirst(replacement)
                 }
             }
