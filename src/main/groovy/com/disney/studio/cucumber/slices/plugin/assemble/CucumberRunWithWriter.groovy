@@ -4,6 +4,8 @@ import groovy.util.logging.Slf4j
 
 import java.nio.file.Paths
 
+import static com.disney.studio.cucumber.slices.plugin.assemble.FeatureFileAssembler.*
+
 /**
  * A class designed to create Cucumber Runner files, based on the <code>cuke_runner_template.txt</code>, which is contained
  * within a <code>templates</code> directory.
@@ -66,13 +68,9 @@ class ParallelRunner<runner index> {
     }
 
     private String findAndReplaceCukeRunnerTokens(String fileName, int counter) {
-        println "\tBEFORE FILENAME: $fileName"
-        // replace the special regex meta character $ with \$
-        if (fileName.contains('$')) {
-            fileName = fileName.replaceAll('\\$', '').replaceAll('"', '')
-        }
 
-        println "\tAFTER FILENAME: $fileName"
+        // replace the special regex meta character $ with nothing
+        fileName = findAndReplaceDollarWithEmptyString(fileName)
 
 
         def newCode = (cukeRunnerTemplateCode =~ /<feature file>/).replaceFirst(fileName)
@@ -117,11 +115,11 @@ class ParallelRunner<runner index> {
                 File cukeRunnerFile = new File(runner.key)
                 cukeRunnerFile.withWriter { writer ->
                     // replace cuke runner tokens supplying the value of the map, which represents the feature file name
-                    writer.write(findAndReplaceCukeRunnerTokens(runner.value, runCounter))
+                    writer.write(findAndReplaceCukeRunnerTokens(findAndReplaceDoubleQuotesWithEmptyString(runner.value), runCounter))
                 }
                 runCounter++
                 log.info("Successfully created Cuke Runner '${Paths.get(cukeRunnerFile.absolutePath).fileName}' " +
-                        "for the following feature file: '${Paths.get(runner.value).fileName}'.")
+                        "for the following feature file: '${Paths.get(findAndReplaceDoubleQuotesWithEmptyString(runner.value)).fileName}'.")
             }
         }
 

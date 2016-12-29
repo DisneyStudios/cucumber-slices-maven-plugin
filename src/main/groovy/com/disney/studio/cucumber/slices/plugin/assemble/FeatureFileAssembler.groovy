@@ -369,7 +369,7 @@ class FeatureFileAssembler {
 
                 // replace the special regex meta character $ with \$
                 if (replacement.contains('$')) {
-                    replacement = replacement.replaceAll('\\$', '\\\\\\$')
+                    replacement = findAndReplaceMetacharacters(replacement)
                 }
 
                 // are the words in the step surrounded by whitespace characters...if the answer is no, then replace all
@@ -387,9 +387,6 @@ class FeatureFileAssembler {
 
                 // check for matches and replace the parameter with the ACTUAL value
                 if (step =~ /\<$scenarioOutlineParameter\>/) {
-                    println "\tSTEP: $step"
-                    println "\tOUTLINE PARAMETER: \\<$scenarioOutlineParameter\\>"
-                    println "\tREPLACEMENT: $replacement"
                     newStepStatement = (step =~ /\<$scenarioOutlineParameter\>/).replaceFirst(replacement)
                 }
             }
@@ -399,10 +396,25 @@ class FeatureFileAssembler {
         return (newStepStatement.isEmpty()) ? step : newStepStatement
     }
 
+    static String findAndReplaceDoubleQuotesWithEmptyString(String string) {
+        return string.replaceAll('"', '')
+    }
+
+    static String findAndReplaceDollarWithEmptyString(String string) {
+        return string.replaceAll('\\$', '')
+    }
+
+    static String findAndReplaceMetacharacters(String string) {
+        return string.replaceAll('\\$', '\\\\\\$')
+    }
+
     private void writeFeatureFile() {
         assert featureFileName, "Cannot create feature file. The supplied feature file name '$featureFileName' is undefined!!"
         def parallelFeaturesDirectory = removeSubDirectoriesFromFeaturesPath(featureFilePath)
         parallelFeaturesDirectory = parallelFeaturesDirectory.replace('features', 'parallel_features')
+
+        featureFileName = findAndReplaceDoubleQuotesWithEmptyString(featureFileName)
+        featureFileName = findAndReplaceDollarWithEmptyString(featureFileName)
 
         File dir = new File(parallelFeaturesDirectory)
         // delete the directory and then re-create the directory
