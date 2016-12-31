@@ -365,8 +365,6 @@ class FeatureFileAssembler {
         for (example in examples) {
             for (exampleValue in example.value) {
                 def scenarioOutlineParameter = exampleValue.split('::')[0] // store the outline parameter
-                println ">> STEP: $step"
-                println ">>>>>> OUTLINE PARAMS: $scenarioOutlineParameter"
                 def replacement = exampleValue.split('::')[1] // store the ACTUAL value of the example
 
                 // replace the special regex meta character $ with \$
@@ -391,8 +389,24 @@ class FeatureFileAssembler {
                 if (step =~ /\<$scenarioOutlineParameter\>/) {
                     newStepStatement = (step =~ /\<$scenarioOutlineParameter\>/).replaceFirst(replacement)
                 }
-                println ">>>>>>>>> NEW STEP: $newStepStatement"
+
+                // Reassign the step, which is passed into the method, with the NEW step, if and only if the NEW step exists.
+                // This ensures that steps which read like
+                //
+                //    "When I enter <first number> + <second number>"
+                //
+                //    Example: adding
+                //    | first number | second number |
+                //    | 2            | 3             |
+                //
+                // will have each of the outline parameters filled with the actual values, (i.e, "When I enter 2 + 3").
+                //
+                // Without this logic, the end result would read like "When I enter <first number> + 3".
+                if (newStepStatement) {
+                    step = newStepStatement
+                }
             }
+            // break out of the outer loop if the NEW step exists
             if (newStepStatement) break
         }
 

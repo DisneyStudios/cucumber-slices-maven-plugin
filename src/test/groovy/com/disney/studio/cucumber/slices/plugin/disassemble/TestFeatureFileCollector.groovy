@@ -19,7 +19,6 @@ class TestFeatureFileCollector {
         featureFileCollector.getFeatureFileNameCollection()
     }
 
-    @Ignore
     @Test
     void shouldReturnFeatureFileCollection() {
         String featuresDirPath = 'src/it/multiple-feature-files/src/test/resources/features'

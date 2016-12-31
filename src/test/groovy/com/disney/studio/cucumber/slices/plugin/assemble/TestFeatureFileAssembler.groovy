@@ -1,5 +1,8 @@
 package com.disney.studio.cucumber.slices.plugin.assemble
 
+import com.disney.studio.cucumber.slices.plugin.disassemble.FeatureFileCollector
+import com.disney.studio.cucumber.slices.plugin.disassemble.FeatureFileParser
+import org.junit.Ignore
 import org.junit.Test
 
 
@@ -23,5 +26,25 @@ class TestFeatureFileAssembler {
     void shouldPassWithProperlyFormattedTag() {
         FeatureFileAssembler featureFileAssembler = new FeatureFileAssembler(['@test-tag'])
         assert featureFileAssembler instanceof FeatureFileAssembler
+    }
+
+    @Test
+    void shouldSupportOutlinesWithMultipleParamsPerStep() {
+        FeatureFileCollector featureFileCollector = new FeatureFileCollector('src/it/outline-feature-multiple-params-per-step/src/test/resources/features')
+        FeatureFileParser featureFileParser = new FeatureFileParser()
+        List<String> featureFileNames = featureFileCollector.getFeatureFileNameCollection()
+
+        // Initialize the assemble objects
+        FeatureFileAssembler featureFileAssembler = new FeatureFileAssembler(['@regression'])
+        featureFileNames.each { name ->
+            // format the contents of the supplied feature file as JSON
+            String json = featureFileParser.formatAsJson(name)
+
+            // now, re-assemble the feature file contents (represented as JSON) into plain text files
+            // with 1 scenario per feature file
+            featureFileAssembler.assembleFeatureFileFromJson(json)
+        }
+
+        assert true
     }
 }
