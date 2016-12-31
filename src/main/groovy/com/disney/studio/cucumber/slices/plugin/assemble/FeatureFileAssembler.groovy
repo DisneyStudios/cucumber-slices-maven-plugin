@@ -365,6 +365,8 @@ class FeatureFileAssembler {
         for (example in examples) {
             for (exampleValue in example.value) {
                 def scenarioOutlineParameter = exampleValue.split('::')[0] // store the outline parameter
+                println ">> STEP: $step"
+                println ">>>>>> OUTLINE PARAMS: $scenarioOutlineParameter"
                 def replacement = exampleValue.split('::')[1] // store the ACTUAL value of the example
 
                 // replace the special regex meta character $ with \$
@@ -389,6 +391,7 @@ class FeatureFileAssembler {
                 if (step =~ /\<$scenarioOutlineParameter\>/) {
                     newStepStatement = (step =~ /\<$scenarioOutlineParameter\>/).replaceFirst(replacement)
                 }
+                println ">>>>>>>>> NEW STEP: $newStepStatement"
             }
             if (newStepStatement) break
         }

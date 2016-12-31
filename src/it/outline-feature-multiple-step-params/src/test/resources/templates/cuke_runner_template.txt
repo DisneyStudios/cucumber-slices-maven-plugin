@@ -1,0 +1,14 @@
+import cucumber.api.CucumberOptions
+import cucumber.api.junit.Cucumber
+import org.junit.runner.RunWith
+
+@RunWith(Cucumber.class)
+@CucumberOptions (
+        features = ["classpath:parallel_features/<feature file>"]
+        , monochrome = true
+        , format = ["pretty", "json:target/cucumber-report/cucumber<runner index>.json", "rerun:rerun.txt", "junit:target/cucumber-report/cucumber<runner index>.xml"]
+        , glue = ["src/test/groovy/com/disney/studio/qa/steps"]
+        , tags = ["~@manual"]
+)
+class ParallelRunner<runner index> {
+}
