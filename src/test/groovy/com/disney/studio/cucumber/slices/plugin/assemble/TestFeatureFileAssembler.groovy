@@ -29,7 +29,9 @@ class TestFeatureFileAssembler {
     }
 
     @Test
-    void shouldSupportOutlinesWithMultipleParamsPerStep() {
+    void shouldUseForDebuggingFeatureFiles() {
+        // To DEBUG different scenarios, simply replace the 'feature file' path within the FeatureFileCollector's
+        // constructor
         FeatureFileCollector featureFileCollector = new FeatureFileCollector('src/it/outline-feature-multiple-params-per-step/src/test/resources/features')
         FeatureFileParser featureFileParser = new FeatureFileParser()
         List<String> featureFileNames = featureFileCollector.getFeatureFileNameCollection()
