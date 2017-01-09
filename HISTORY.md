@@ -1,3 +1,6 @@
+## 1.5.0
+* added support for scenario outlines with multiple parameters per step
+
 ## 1.4.0
 * included support for a `cucumberRunnerExtension` configuration property
 
