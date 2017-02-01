@@ -434,6 +434,8 @@ class FeatureFileAssembler {
         featureFileName = findAndReplaceDollarWithEmptyString(featureFileName)
 
         File dir = new File(parallelFeaturesDirectory)
+        log.debug("Parallel features directory: ${dir.absolutePath}")
+
         // delete the directory and then re-create the directory
         if (!doesParallelFeatureDirExist) {
             dir.deleteDir()
@@ -443,6 +445,8 @@ class FeatureFileAssembler {
 
         def featureFilePath = "${parallelFeaturesDirectory}/${featureFileName}"
         File featureFile = new File(featureFilePath)
+
+        log.debug("Feature file: ${featureFile.absolutePath}")
 
         // Delete the file if it exists
         if (featureFile.exists()) featureFile.delete()
