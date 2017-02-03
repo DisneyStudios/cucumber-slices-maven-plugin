@@ -113,6 +113,8 @@ class ParallelRunner<runner index> {
             for (runner in assembledCucumberRunnerFiles) {
                 // create file using the key, which represents the cuke runner filename
                 File cukeRunnerFile = new File(runner.key)
+                log.debug("Cuke Runner file: ${Paths.get(cukeRunnerFile.absolutePath).fileName}")
+
                 cukeRunnerFile.withWriter { writer ->
                     // replace cuke runner tokens supplying the value of the map, which represents the feature file name
                     writer.write(findAndReplaceCukeRunnerTokens(findAndReplaceDoubleQuotesWithEmptyString(runner.value), runCounter))

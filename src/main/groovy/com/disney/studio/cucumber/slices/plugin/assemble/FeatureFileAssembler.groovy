@@ -434,6 +434,8 @@ class FeatureFileAssembler {
         featureFileName = findAndReplaceDollarWithEmptyString(featureFileName)
 
         File dir = new File(parallelFeaturesDirectory)
+        log.debug("Parallel features directory: ${dir.absolutePath}")
+
         // delete the directory and then re-create the directory
         if (!doesParallelFeatureDirExist) {
             dir.deleteDir()
@@ -443,6 +445,8 @@ class FeatureFileAssembler {
 
         def featureFilePath = "${parallelFeaturesDirectory}/${featureFileName}"
         File featureFile = new File(featureFilePath)
+
+        log.debug("Feature file: ${featureFile.absolutePath}")
 
         // Delete the file if it exists
         if (featureFile.exists()) featureFile.delete()
@@ -462,7 +466,14 @@ class FeatureFileAssembler {
 
     @SuppressWarnings("GrMethodMayBeStatic")
     private String removeSubDirectoriesFromFeaturesPath(String path) {
-        List tokenizedPathElements = path.tokenize('/')
+        List tokenizedPathElements
+
+        if (System.getProperty('os.name').contains('Windows')) {
+            tokenizedPathElements = path.tokenize('\\')
+        } else {
+            tokenizedPathElements = path.tokenize('/')
+        }
+
         int indexOfFeaturesPlusOne = tokenizedPathElements.indexOf('features') + 1
         int numOfElementsToDrop = tokenizedPathElements.size() - indexOfFeaturesPlusOne
         tokenizedPathElements = tokenizedPathElements.dropRight(numOfElementsToDrop)
