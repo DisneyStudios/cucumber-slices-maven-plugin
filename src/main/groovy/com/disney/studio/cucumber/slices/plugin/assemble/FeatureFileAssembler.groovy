@@ -466,7 +466,14 @@ class FeatureFileAssembler {
 
     @SuppressWarnings("GrMethodMayBeStatic")
     private String removeSubDirectoriesFromFeaturesPath(String path) {
-        List tokenizedPathElements = path.tokenize('/')
+        List tokenizedPathElements
+
+        if (System.getProperty('os.name').contains('Windows')) {
+            tokenizedPathElements = path.tokenize('\\')
+        } else {
+            tokenizedPathElements = path.tokenize('/')
+        }
+
         int indexOfFeaturesPlusOne = tokenizedPathElements.indexOf('features') + 1
         int numOfElementsToDrop = tokenizedPathElements.size() - indexOfFeaturesPlusOne
         tokenizedPathElements = tokenizedPathElements.dropRight(numOfElementsToDrop)
