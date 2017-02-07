@@ -20,6 +20,7 @@ class FeatureFileAssembler {
     private String timestamp
     private boolean doesParallelFeatureDirExist
     private FeatureFileWriter featureFileWriter
+    private static final String FILESEP = File.separator
 
     /**
      * Construct a FeatureFileAssembler using the specified <em>expectedTags</em>
@@ -443,7 +444,7 @@ class FeatureFileAssembler {
             doesParallelFeatureDirExist = true
         }
 
-        def featureFilePath = "${parallelFeaturesDirectory}/${featureFileName}"
+        def featureFilePath = "${parallelFeaturesDirectory}" + FILESEP + "${featureFileName}"
         File featureFile = new File(featureFilePath)
 
         log.debug("Feature file: ${featureFile.absolutePath}")
@@ -466,20 +467,20 @@ class FeatureFileAssembler {
 
     @SuppressWarnings("GrMethodMayBeStatic")
     private String removeSubDirectoriesFromFeaturesPath(String path) {
-        List tokenizedPathElements
+//        List tokenizedPathElements
 
-        if (System.getProperty('os.name').contains('Windows')) {
-            tokenizedPathElements = path.tokenize('\\')
-        } else {
-            tokenizedPathElements = path.tokenize('/')
-        }
+//        if (System.getProperty('os.name').contains('Windows')) {
+        List tokenizedPathElements = path.tokenize(FILESEP)
+//        } else {
+//            tokenizedPathElements = path.tokenize('/')
+//        }
 
         int indexOfFeaturesPlusOne = tokenizedPathElements.indexOf('features') + 1
         int numOfElementsToDrop = tokenizedPathElements.size() - indexOfFeaturesPlusOne
         tokenizedPathElements = tokenizedPathElements.dropRight(numOfElementsToDrop)
 
         // reassemble path elements to form an actual path
-        return "/${tokenizedPathElements.join('/')}"
+        return "${tokenizedPathElements.join(FILESEP)}"
     }
 
     @SuppressWarnings("GrMethodMayBeStatic")
