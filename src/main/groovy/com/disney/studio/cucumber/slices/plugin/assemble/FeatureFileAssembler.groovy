@@ -21,6 +21,7 @@ class FeatureFileAssembler {
     private boolean doesParallelFeatureDirExist
     private FeatureFileWriter featureFileWriter
     private static final String FILESEP = File.separator
+    private static final String OS = System.getProperty("os.name").toLowerCase()
 
     /**
      * Construct a FeatureFileAssembler using the specified <em>expectedTags</em>
@@ -480,6 +481,10 @@ class FeatureFileAssembler {
         tokenizedPathElements = tokenizedPathElements.dropRight(numOfElementsToDrop)
 
         // reassemble path elements to form an actual path
+        if (!OS.startsWith('win')) {
+            return FILESEP + "${tokenizedPathElements.join(FILESEP)}"
+        }
+
         return "${tokenizedPathElements.join(FILESEP)}"
     }
 
