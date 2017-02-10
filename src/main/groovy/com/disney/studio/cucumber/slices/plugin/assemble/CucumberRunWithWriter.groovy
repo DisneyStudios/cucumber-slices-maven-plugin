@@ -12,6 +12,7 @@ import static com.disney.studio.cucumber.slices.plugin.assemble.FeatureFileAssem
  */
 @Slf4j
 class CucumberRunWithWriter {
+    private static final String FILESEP = File.separator
     private static final String CUKE_RUNNER_TEMPLATE_FILE = 'cuke_runner_template.txt'
     private static final String CUKE_RUNNER_TEMPLATE_EXAMPLE = """\
 import cucumber.api.CucumberOptions
@@ -49,7 +50,7 @@ class ParallelRunner<runner index> {
             throw new IllegalStateException("The templates resource directory [$templatesDirectory] does not exist!")
         }
 
-        File templateFile = new File(templateDir.absolutePath.trim() + '/' + CUKE_RUNNER_TEMPLATE_FILE)
+        File templateFile = new File(templateDir.absolutePath.trim() + FILESEP + CUKE_RUNNER_TEMPLATE_FILE)
         if (!templateFile.exists()) {
             throw new IllegalStateException("The Cucumber Runner Template file [$templateFile] does not exist!! " +
                     "Be sure to create the runner file with the appropriate code.\n\nCucumber Runner Example (Groovy code):\n\n $CUKE_RUNNER_TEMPLATE_EXAMPLE")
@@ -59,7 +60,8 @@ class ParallelRunner<runner index> {
     }
 
     private void createParallelRunnerDirectory() {
-        File dir = new File("$parallelRunnersDirectory")
+//        File dir = new File("$parallelRunnersDirectory")
+        File dir = new File(parallelRunnersDirectory)
         if (dir.exists() || !dir.exists()) {
             dir.deleteDir()
             dir.mkdirs()
@@ -97,7 +99,7 @@ class ParallelRunner<runner index> {
 
         // create the data structure representing the assembled cucumber runner files
         for (featureFile in featureFileAssembler.featureFileWriter.featureFiles) {
-            cukeRunnerFileName = "$parallelRunnersDirectory/ParallelRunner${runCounter}.${cukeRunnerExtension}"
+            cukeRunnerFileName = "$parallelRunnersDirectory" + FILESEP + "ParallelRunner${runCounter}.${cukeRunnerExtension}"
             featureFileName = Paths.get(featureFile.toString()).fileName.toString()
             assembledCucumberRunnerFiles[cukeRunnerFileName] = featureFileName
             runCounter++
