@@ -21,8 +21,6 @@ class FeatureFileAssembler {
     private String timestamp
     private boolean doesParallelFeatureDirExist
     private FeatureFileWriter featureFileWriter
-//    private static final String FILESEP = File.separator
-//    private static final String OS = System.getProperty("os.name").toLowerCase()
 
     /**
      * Construct a FeatureFileAssembler using the specified <em>expectedTags</em>
@@ -147,6 +145,8 @@ class FeatureFileAssembler {
      */
     private void createFeatureFromScenarioOutline(Map element, Object parsedJson) {
         log.info('Processing Scenario Outline section(s)...')
+        // log the name of the scenario to standard out and log file
+        logScenarioName(element)
         // construct the example data structure obtained from the Scenario Outline
         processExamples(element)
 
@@ -190,6 +190,8 @@ class FeatureFileAssembler {
      */
     private void createFeatureFromScenario(Map element, Object parsedJson) {
         timestamp = getTimestamp()
+        // log the name of the scenario to standard out and log file
+        logScenarioName(element)
         // extract scenario steps
         processElement(element)
         // setup the Feature's narrative
@@ -209,6 +211,11 @@ class FeatureFileAssembler {
         // clear out the data structures, except for the background steps ... the background steps get cleared out upon
         // reading in a NEW feature file
         clearSuppliedDataStructures([featureInformation, actualTags, generalSteps])
+    }
+
+    @SuppressWarnings("GrMethodMayBeStatic")
+    private void logScenarioName(Map element) {
+        log.info("Processing the following scenario... '${element.name}'")
     }
 
     /**

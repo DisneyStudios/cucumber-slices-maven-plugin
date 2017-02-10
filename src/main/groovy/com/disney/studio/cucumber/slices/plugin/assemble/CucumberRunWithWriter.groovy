@@ -13,7 +13,6 @@ import static com.disney.studio.cucumber.slices.plugin.common.SystemUtilities.*
  */
 @Slf4j
 class CucumberRunWithWriter {
-//    private static final String FILESEP = File.separator
     private static final String CUKE_RUNNER_TEMPLATE_FILE = 'cuke_runner_template.txt'
     private static final String CUKE_RUNNER_TEMPLATE_EXAMPLE = """\
 import cucumber.api.CucumberOptions
