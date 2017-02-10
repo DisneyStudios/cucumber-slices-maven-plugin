@@ -2,8 +2,9 @@ package com.disney.studio.cucumber.slices.plugin.assemble
 
 import groovy.json.JsonSlurper
 import groovy.util.logging.Slf4j
-
 import java.nio.file.Paths
+import static com.disney.studio.cucumber.slices.plugin.common.SystemUtilities.*
+
 
 @Slf4j
 class FeatureFileAssembler {
@@ -20,8 +21,8 @@ class FeatureFileAssembler {
     private String timestamp
     private boolean doesParallelFeatureDirExist
     private FeatureFileWriter featureFileWriter
-    private static final String FILESEP = File.separator
-    private static final String OS = System.getProperty("os.name").toLowerCase()
+//    private static final String FILESEP = File.separator
+//    private static final String OS = System.getProperty("os.name").toLowerCase()
 
     /**
      * Construct a FeatureFileAssembler using the specified <em>expectedTags</em>

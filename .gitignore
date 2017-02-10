@@ -28,3 +28,4 @@ rerun.txt
 
 # ignore all feature files in test directory
 /src/test/resources/features
+/src/test/resources/templates/

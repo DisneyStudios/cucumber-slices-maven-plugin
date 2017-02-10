@@ -5,6 +5,7 @@ import groovy.util.logging.Slf4j
 import java.nio.file.Paths
 
 import static com.disney.studio.cucumber.slices.plugin.assemble.FeatureFileAssembler.*
+import static com.disney.studio.cucumber.slices.plugin.common.SystemUtilities.*
 
 /**
  * A class designed to create Cucumber Runner files, based on the <code>cuke_runner_template.txt</code>, which is contained
@@ -12,7 +13,7 @@ import static com.disney.studio.cucumber.slices.plugin.assemble.FeatureFileAssem
  */
 @Slf4j
 class CucumberRunWithWriter {
-    private static final String FILESEP = File.separator
+//    private static final String FILESEP = File.separator
     private static final String CUKE_RUNNER_TEMPLATE_FILE = 'cuke_runner_template.txt'
     private static final String CUKE_RUNNER_TEMPLATE_EXAMPLE = """\
 import cucumber.api.CucumberOptions
@@ -61,7 +62,7 @@ class ParallelRunner<runner index> {
 
     private void createParallelRunnerDirectory() {
 //        File dir = new File("$parallelRunnersDirectory")
-        File dir = new File(parallelRunnersDirectory)
+        File dir = new File( Paths.get(parallelRunnersDirectory).toFile().absolutePath )
         if (dir.exists() || !dir.exists()) {
             dir.deleteDir()
             dir.mkdirs()

@@ -30,6 +30,9 @@ class TestFeatureFileAssembler {
 
     @Test
     void shouldUseForDebuggingFeatureFiles() {
+        String parallelRunnersDirectory = 'src/test/groovy/parallel_runners'
+        String templatesDirectory = 'src/test/resources/templates'
+        CucumberRunnerExtension cucumberRunnerExtension = CucumberRunnerExtension.groovy
         // To DEBUG different scenarios, simply replace the 'feature file' path within the FeatureFileCollector's
         // constructor
         FeatureFileCollector featureFileCollector = new FeatureFileCollector('src/it/outline-feature-multiple-params-per-step/src/test/resources/features')
@@ -38,6 +41,8 @@ class TestFeatureFileAssembler {
 
         // Initialize the assemble objects
         FeatureFileAssembler featureFileAssembler = new FeatureFileAssembler(['@regression'])
+        CucumberRunWithWriter cucumberRunWithWriter = new CucumberRunWithWriter(parallelRunnersDirectory, templatesDirectory)
+
         featureFileNames.each { name ->
             // format the contents of the supplied feature file as JSON
             String json = featureFileParser.formatAsJson(name)
@@ -45,7 +50,12 @@ class TestFeatureFileAssembler {
             // now, re-assemble the feature file contents (represented as JSON) into plain text files
             // with 1 scenario per feature file
             featureFileAssembler.assembleFeatureFileFromJson(json)
+
+            // assemble the Cucumber Runner files. This will place each named feature file into a linked hash map
+            cucumberRunWithWriter.assembleCucumberRunnerFiles(featureFileAssembler, cucumberRunnerExtension)
         }
+
+        cucumberRunWithWriter.writeCucumberRunWithFiles()
 
         assert true
     }
