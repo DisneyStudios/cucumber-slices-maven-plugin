@@ -1,3 +1,6 @@
+## 1.5.1
+* fixed Windows related bug
+
 ## 1.5.0
 * added support for scenario outlines with multiple parameters per step
 
