@@ -10,7 +10,7 @@ class FeatureFileParser {
 
     @SuppressWarnings("GrMethodMayBeStatic")
     String formatAsJson(String fileName) {
-        log.info("Converting feature file to JSON: $fileName...")
+        log.debug("Converting feature file to JSON: $fileName...")
 
         String gherkin = FixJava.readReader(new InputStreamReader(new FileInputStream(fileName), "UTF-8"))
         StringBuilder json = new StringBuilder()
@@ -20,7 +20,7 @@ class FeatureFileParser {
         formatter.done()
         formatter.close()
 
-        log.info('Successfully converted feature file to JSON.')
+        log.debug('Successfully converted feature file to JSON.')
 
         return json.toString()
     }

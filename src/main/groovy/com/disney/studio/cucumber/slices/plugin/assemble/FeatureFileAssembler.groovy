@@ -36,7 +36,7 @@ class FeatureFileAssembler {
         this.expectedTags = expectedTags
         this.jsonSlurper = new JsonSlurper()
         this.featureFileWriter = new FeatureFileWriter()
-        log.info("Supplied list of tag filters: $expectedTags")
+        log.debug("Supplied list of tag filters: $expectedTags")
     }
 
     FeatureFileWriter getFeatureFileWriter() {
@@ -66,27 +66,27 @@ class FeatureFileAssembler {
 
     private void clearAllDataStructures() {
         if (backgroundSteps) {
-            log.info('Clearing Cucumber Background data structure.')
+            log.debug('Clearing Cucumber Background data structure.')
             backgroundSteps.clear()
         }
         if (actualTags) {
-            log.info('Clearing Cucumber tags data structure.')
+            log.debug('Clearing Cucumber tags data structure.')
             actualTags.clear()
         }
         if (generalSteps) {
-            log.info('Clearing Cucumber general step data structure.')
+            log.debug('Clearing Cucumber general step data structure.')
             generalSteps.clear()
         }
         if (featureInformation) {
-            log.info('Clearing Cucumber feature data structure.')
+            log.debug('Clearing Cucumber feature data structure.')
             featureInformation.clear()
         }
         if (scenarioInformation) {
-            log.info('Clearing Cucumber scenario data structure.')
+            log.debug('Clearing Cucumber scenario data structure.')
             scenarioInformation.clear()
         }
         if (examples) {
-            log.info('Clearing Cucumber scenario outline data structure.')
+            log.debug('Clearing Cucumber scenario outline data structure.')
             examples.clear()
         }
     }
@@ -99,9 +99,9 @@ class FeatureFileAssembler {
     }
 
     private Object objectifyJson(String json) {
-        log.info('Objectifying the supplied JSON text...')
+        log.debug('Objectifying the supplied JSON text...')
         def parsedJson = jsonSlurper.parseText(json)
-        log.info('Successfully objectified the supplied JSON text.')
+        log.debug('Successfully objectified the supplied JSON text.')
         return parsedJson
     }
 
@@ -120,7 +120,7 @@ class FeatureFileAssembler {
             for (Map element in parsedJson.elements) {
                 // do we have an element with an ID
                 if (isElementIdDefined(element)) {
-                    log.info("Processing Feature file's Scenario...")
+                    log.debug("Processing Feature file's Scenario...")
                     if (isExampleCollectionDefined(element)) {
                         createFeatureFromScenarioOutline(element, parsedJson)
                     } else {
@@ -128,7 +128,7 @@ class FeatureFileAssembler {
                     }
                 } else {
                     processElement(element)
-                    log.info("'${backgroundSteps[0]}', successfully processed.")
+                    log.debug("'${backgroundSteps[0]}', successfully processed.")
                 }
             }
         } else {
@@ -144,7 +144,7 @@ class FeatureFileAssembler {
      * The <b>entire</b> JSON structure representing the full contents of the parsed Gherkin feature file
      */
     private void createFeatureFromScenarioOutline(Map element, Object parsedJson) {
-        log.info('Processing Scenario Outline section(s)...')
+        log.debug('Processing Scenario Outline section(s)...')
         // log the name of the scenario to standard out and log file
         logScenarioName(element)
         // construct the example data structure obtained from the Scenario Outline
@@ -215,7 +215,7 @@ class FeatureFileAssembler {
 
     @SuppressWarnings("GrMethodMayBeStatic")
     private void logScenarioName(Map element) {
-        log.info("Processing the following scenario... '${element.name}'")
+        log.debug("Processing the following scenario... '${element.name}'")
     }
 
     /**
@@ -286,7 +286,7 @@ class FeatureFileAssembler {
      * The JSON element that contains information associated with the Scenario
      */
     private void processElement(Map element) {
-        if (isBackgroundDefined(element)) log.info('The supplied feature file contains a Cucumber Background section.')
+        if (isBackgroundDefined(element)) log.debug('The supplied feature file contains a Cucumber Background section.')
         // store feature file name
         if (isElementIdDefined(element)) {
             // the name of the feature file on disk
@@ -471,7 +471,7 @@ class FeatureFileAssembler {
         } else {
             message = "'${generalSteps[0]}', sucessfully processed and written to '$featureFileName'."
         }
-        log.info(message)
+        log.debug(message)
     }
 
     @SuppressWarnings("GrMethodMayBeStatic")

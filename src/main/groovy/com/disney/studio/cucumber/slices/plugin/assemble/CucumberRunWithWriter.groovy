@@ -66,7 +66,7 @@ class ParallelRunner<runner index> {
             dir.deleteDir()
             dir.mkdirs()
         }
-        log.info("Successfully created the ${dir.absolutePath} directory.")
+        log.debug("Successfully created the ${dir.absolutePath} directory.")
     }
 
     private String findAndReplaceCukeRunnerTokens(String fileName, int counter) {
