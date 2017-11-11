@@ -1,3 +1,6 @@
+## 1.6.0
+* replaced all _info_ log statements, except for the most essential, with _debug_ statements
+
 ## 1.5.1
 * fixed Windows related bug
 
