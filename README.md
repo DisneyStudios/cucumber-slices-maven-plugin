@@ -64,7 +64,7 @@ Cucumber Slices supports the following `<configuration>` settings
 The property values listed in each of the configuration settings can be used in place of the POM file settings.  For instance, you may execute the following Maven command
 
 ```maven
-mvn com.disney.studio.cucumber.slices.plugin:cucumber-slices-maven-plugin:generate generate-test-resources -DparallelRunnersDirectory='src/test/groovy/parallel_runners' -DtemplatesDirectory='src/test/resources/templates' -DcucumberTags='@tagname'
+mvn com.disney.studio.cucumber.slices.plugin:cucumber-slices-maven-plugin:generate generate-test-resources -DparallelRunnersDirectory="src/test/groovy/parallel_runners" -DtemplatesDirectory="src/test/resources/templates" -DcucumberTags="@tagname"
 ```
 
 ## Setup
