@@ -3,6 +3,9 @@ package com.disney.studio.cucumber.slices.plugin.assemble
 import groovy.json.JsonSlurper
 import groovy.util.logging.Slf4j
 import java.nio.file.Paths
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
 import static com.disney.studio.cucumber.slices.plugin.common.SystemUtilities.*
 
 
@@ -61,7 +64,7 @@ class FeatureFileAssembler {
 
     @SuppressWarnings("GrMethodMayBeStatic")
     private String getTimestamp() {
-        return new Date().format('hhmmss-S')
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern('hhmmss-S'))
     }
 
     private void clearAllDataStructures() {
