@@ -1,3 +1,7 @@
+## 1.7.0
+* upgraded groovy to v2.5.4
+* replaced _warn_ log statements that stated the test run was 'Skipping further processing because the ...' with _debug_ log-level
+
 ## 1.6.0
 * replaced all _info_ log statements, except for the most essential, with _debug_ statements
 
