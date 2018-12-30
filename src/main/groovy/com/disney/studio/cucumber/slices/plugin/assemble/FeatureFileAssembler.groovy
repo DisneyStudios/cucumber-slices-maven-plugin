@@ -223,12 +223,12 @@ class FeatureFileAssembler {
 
     /**
      * Process the Scenario Outline examples and store the resulting information in a Map data structure. The
-     * resulting data structure should resemble
+     * resulting data structure would look like
      * <pre>
      *     0:['first name::Robert', 'last name::Smith']
      *     1:['first name::Jenny', 'last name::Sorenson']
      * </pre>
-     * A Map whose values are a list of strings that represent the <b>rows</b> of the Scenario Outline examples. The
+     * which is a Map, whose values are a list of strings that represent the <b>rows</b> of the Scenario Outline examples. The
      * above data structure would look like the following in Gherkin syntax
      * <pre>
      *     Examples: Some description
@@ -333,8 +333,8 @@ class FeatureFileAssembler {
             if (element.type == 'scenario_outline') {
                 def newStep = findAndReplaceOutlineParameters(generalSteps.last())
                 if (newStep) {
-                    generalSteps.pop()
-                    generalSteps.push(newStep)
+                    generalSteps.removeLast()
+                    generalSteps.add(newStep)
                 }
             }
         }
