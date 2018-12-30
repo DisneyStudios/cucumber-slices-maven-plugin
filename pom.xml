@@ -316,31 +316,31 @@
                 </plugins>
             </build>
         </profile>
-        <profile>
-            <id>nexusclm</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.sonatype.clm</groupId>
-                        <artifactId>clm-maven-plugin</artifactId>
-                        <version>${clm.version}</version>
-                        <executions>
-                            <execution>
-                                <inherited>false</inherited>
-                                <goals>
-                                    <goal>evaluate</goal>
-                                </goals>
-                                <phase>package</phase>
-                                <configuration>
-                                    <serverUrl>${clm.serverUrl}</serverUrl>
-                                    <stage>build</stage>
-                                    <applicationId>${clm.applicationId}</applicationId>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
+        <!--<profile>-->
+            <!--<id>nexusclm</id>-->
+            <!--<build>-->
+                <!--<plugins>-->
+                    <!--<plugin>-->
+                        <!--<groupId>com.sonatype.clm</groupId>-->
+                        <!--<artifactId>clm-maven-plugin</artifactId>-->
+                        <!--<version>${clm.version}</version>-->
+                        <!--<executions>-->
+                            <!--<execution>-->
+                                <!--<inherited>false</inherited>-->
+                                <!--<goals>-->
+                                    <!--<goal>evaluate</goal>-->
+                                <!--</goals>-->
+                                <!--<phase>package</phase>-->
+                                <!--<configuration>-->
+                                    <!--<serverUrl>${clm.serverUrl}</serverUrl>-->
+                                    <!--<stage>build</stage>-->
+                                    <!--<applicationId>${clm.applicationId}</applicationId>-->
+                                <!--</configuration>-->
+                            <!--</execution>-->
+                        <!--</executions>-->
+                    <!--</plugin>-->
+                <!--</plugins>-->
+            <!--</build>-->
+        <!--</profile>-->
     </profiles>
 </project>
