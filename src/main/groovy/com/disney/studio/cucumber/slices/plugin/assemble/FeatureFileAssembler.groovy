@@ -168,7 +168,7 @@ class FeatureFileAssembler {
                 if (isScenarioTagged()) {
                     writeFeatureFile()
                 } else {
-                    log.warn("Skipping further processing because the Scenario's tags, $actualTags, do not match the supplied tag filter, $expectedTags!")
+                    log.debug("Skipping further processing because the Scenario's tags, $actualTags, do not match the supplied tag filter, $expectedTags!")
                 }
             } else {
                 writeFeatureFile()
@@ -205,7 +205,7 @@ class FeatureFileAssembler {
             if (isScenarioTagged()) {
                 writeFeatureFile()
             } else {
-                log.warn("Skipping further processing because the Scenario's tags, $actualTags, do not match the supplied tag filter, $expectedTags!")
+                log.debug("Skipping further processing because the Scenario's tags, $actualTags, do not match the supplied tag filter, $expectedTags!")
             }
         } else {
             writeFeatureFile()
