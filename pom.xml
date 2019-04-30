@@ -174,7 +174,7 @@
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-utils</artifactId>
-            <version>3.0.8</version>
+            <version>3.0.16</version>
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
@@ -316,31 +316,5 @@
                 </plugins>
             </build>
         </profile>
-        <!--<profile>-->
-            <!--<id>nexusclm</id>-->
-            <!--<build>-->
-                <!--<plugins>-->
-                    <!--<plugin>-->
-                        <!--<groupId>com.sonatype.clm</groupId>-->
-                        <!--<artifactId>clm-maven-plugin</artifactId>-->
-                        <!--<version>${clm.version}</version>-->
-                        <!--<executions>-->
-                            <!--<execution>-->
-                                <!--<inherited>false</inherited>-->
-                                <!--<goals>-->
-                                    <!--<goal>evaluate</goal>-->
-                                <!--</goals>-->
-                                <!--<phase>package</phase>-->
-                                <!--<configuration>-->
-                                    <!--<serverUrl>${clm.serverUrl}</serverUrl>-->
-                                    <!--<stage>build</stage>-->
-                                    <!--<applicationId>${clm.applicationId}</applicationId>-->
-                                <!--</configuration>-->
-                            <!--</execution>-->
-                        <!--</executions>-->
-                    <!--</plugin>-->
-                <!--</plugins>-->
-            <!--</build>-->
-        <!--</profile>-->
     </profiles>
 </project>
