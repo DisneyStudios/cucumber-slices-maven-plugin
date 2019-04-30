@@ -1,3 +1,6 @@
+## 1.8.0
+* upgraded plexus-utils dependendcy to v3.0.16
+
 ## 1.7.0
 * upgraded groovy to v2.5.4
 * replaced _warn_ log statements that stated the test run was 'Skipping further processing because the ...' with _debug_ log-level
