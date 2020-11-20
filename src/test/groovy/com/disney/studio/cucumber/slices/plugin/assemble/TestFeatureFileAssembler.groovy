@@ -28,7 +28,7 @@ class TestFeatureFileAssembler {
         assert featureFileAssembler instanceof FeatureFileAssembler
     }
 
-    @Test
+    @Ignore
     void shouldUseForDebuggingFeatureFiles() {
         String parallelRunnersDirectory = 'src/test/groovy/parallel_runners'
         String templatesDirectory = 'src/test/resources/templates'

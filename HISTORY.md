@@ -1,3 +1,6 @@
+## 1.8.1
+* upgraded junit dependendcy to v4.13.1
+
 ## 1.8.0
 * upgraded plexus-utils dependendcy to v3.0.16
 
