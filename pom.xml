@@ -4,7 +4,7 @@
 
     <groupId>com.disney.studio.cucumber.slices.plugin</groupId>
     <artifactId>cucumber-slices-maven-plugin</artifactId>
-    <version>1.8.1</version>
+    <version>1.8.2-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -44,7 +44,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <gmavenplus.version>1.5</gmavenplus.version>
-        <groovy.version>2.5.4</groovy.version>
+        <groovy.version>2.5.14</groovy.version>
         <slf4j.version>1.7.2</slf4j.version>
         <cucumber.version>1.2.4</cucumber.version>
     </properties>
@@ -192,6 +192,7 @@
             <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
+        <!-- must use EXPLICIT groovy dependencies to support project's that rely on this lib -->
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy</artifactId>
@@ -205,6 +206,11 @@
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-cli-picocli</artifactId>
+            <version>${groovy.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-cli-commons</artifactId>
             <version>${groovy.version}</version>
         </dependency>
         <dependency>
