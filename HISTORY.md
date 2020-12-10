@@ -1,3 +1,6 @@
+## 1.8.2
+* upgraded groovy to v2.5.14
+
 ## 1.8.1
 * upgraded junit dependendcy to v4.13.1
 
